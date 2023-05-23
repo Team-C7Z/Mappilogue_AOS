@@ -13,12 +13,16 @@
         tools:targetApi="31" >
         <activity
             android:name=".presentation.ui.main.view.MainActivity"
-            android:exported="true" >
+            android:exported="false" >
+        </activity>
+        <activity android:name=".presentation.ui.splash.view.SplashActivity"
+            android:theme="@style/SplashTheme"
+            android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
         </activity>
     </application>
 
