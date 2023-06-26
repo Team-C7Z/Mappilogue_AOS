@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Mappilogue_AOS</string>
+
+    <string name="title_sign_in">맵필로그, 기억의 시작</string>
 </resources>
