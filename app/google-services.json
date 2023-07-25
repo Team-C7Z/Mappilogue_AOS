@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "546730866809",
+    "project_id": "mappilogue",
+    "storage_bucket": "mappilogue.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:546730866809:android:4cd181552edc3d0f967ca8",
+        "android_client_info": {
+          "package_name": "com.c7z.mappilogue_aos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "546730866809-24ai0hp8v2lqcqikuuepb41n2klngsl2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRxdj_vRwJLAIbP6yAGK3-2nLJY8dgYgI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "546730866809-24ai0hp8v2lqcqikuuepb41n2klngsl2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
