@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mappilogue_AOS"
         tools:targetApi="31" >
+      
         <activity android:name=".presentation.ui.splash.view.SplashActivity"
             android:theme="@style/SplashTheme"
             android:exported="true">
@@ -22,10 +23,13 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
-
-        <activity
-            android:name=".presentation.ui.main.MainActivity"
+      
+        <activity android:name=".presentation.ui.main.MainActivity"
             android:exported="true" />
+        <activity android:name=".presentation.ui.onboarding.OnBoardingActivity"
+            android:exported="true" />
+        <activity android:name=".presentation.ui.SignIn.SignInActivity"
+            android:exported="false" />
 
         <!-- FCM -->
         <service android:name=".data.remote.service.MyFirebaseMessagingService"

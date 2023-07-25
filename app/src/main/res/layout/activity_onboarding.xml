@@ -5,12 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="activity"
+            type="com.c7z.mappilogue_aos.presentation.ui.onboarding.OnBoardingActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/gray_1">
 
         <TextView
             android:id="@+id/onboarding_tv_title"
@@ -20,7 +23,7 @@
             android:includeFontPadding="false"
             android:textSize="20sp"
             android:textColor="@color/black"
-            android:layout_marginTop="112dp"
+            android:layout_marginTop="70dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -28,16 +31,52 @@
 
 
         <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/onboarding_vp_onboard"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="46dp"
             android:orientation="horizontal"
-            app:layout_constraintHeight_percent="0.46"
+            app:layout_constraintHeight_percent="0.6"
             app:layout_constraintTop_toBottomOf="@id/onboarding_tv_title"
+            app:layout_constraintBottom_toTopOf="@id/onboarding_tab_indicator"
             />
 
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/onboarding_tab_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:tabIndicator="@android:color/transparent"
+            app:tabBackground="@drawable/bg_onboarding_tab_indicator"
+            android:layout_marginBottom="40dp"
+            app:layout_constraintBottom_toTopOf="@id/onboarding_btn_start"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+        
+        
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/onboarding_btn_start"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:enabled="false"
+            android:onClick="@{() -> activity.onNextClicked()}"
+            android:background="@drawable/selector_onboarding_btn_start"
+            app:layout_constraintBottom_toBottomOf="parent" >
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/common_start"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:fontFamily="@font/pretendard_regular"
+                android:includeFontPadding="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
