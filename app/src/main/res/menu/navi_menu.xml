@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/main_bottom_home"
+        android:icon="@drawable/ic_navi_home"
+        android:title="@string/navi_home" />
+
+    <item
+        android:id="@+id/main_bottom_calender"
+        android:icon="@drawable/ic_navi_calender"
+        android:title="@string/navi_calender" />
+
+    <item
+        android:id="@+id/main_bottom_meet"
+        android:icon="@drawable/ic_navi_meet"
+        android:title="@string/navi_meet" />
+
+    <item
+        android:id="@+id/main_bottom_memorize"
+        android:icon="@drawable/ic_navi_memorize"
+        android:title="@string/navi_memorize" />
+
+    <item
+        android:id="@+id/main_bottom_mypage"
+        android:icon="@drawable/ic_navi_mypage"
+        android:title="@string/navi_mypage" />
+</menu>

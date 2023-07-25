@@ -3,7 +3,7 @@ package com.c7z.mappilogue_aos.presentation.ui.splash.view
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.c7z.mappilogue_aos.presentation.ui.main.view.MainActivity
+import com.c7z.mappilogue_aos.presentation.ui.main.MainActivity
 
 class SplashActivity : AppCompatActivity() {
 
