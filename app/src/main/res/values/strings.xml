@@ -5,5 +5,10 @@
 
     <string name="common_start">시작하기</string>
 
-    <string name="calendar_current_year_month">%d년 %d월</string>
+    <!-- 바텀 네비 -->
+    <string name="navi_home">홈</string>
+    <string name="navi_calender">캘린더</string>
+    <string name="navi_meet">모임</string>
+    <string name="navi_memorize">기록</string>
+    <string name="navi_mypage">MY</string>
 </resources>
