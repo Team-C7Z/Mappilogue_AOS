@@ -8,6 +8,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.c7z.mappilogue_aos.R
 import com.c7z.mappilogue_aos.databinding.ActivityOnboardingBinding
 import com.c7z.mappilogue_aos.presentation.ui.SignIn.SignInActivity
+import com.c7z.mappilogue_aos.presentation.ui.main.view.MainActivity
 import com.c7z.mappilogue_aos.presentation.ui.onboarding.adapter.OnBoardingAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -44,7 +45,8 @@ class OnBoardingActivity : AppCompatActivity() {
     }
 
     fun onNextClicked() {
-        startActivity(Intent(this, SignInActivity::class.java))
+        //startActivity(Intent(this, SignInActivity::class.java))
+        startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
 }

@@ -5,15 +5,17 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".presentation.ui.main.view.MainActivity">
+        android:layout_height="match_parent">
 
-        <FrameLayout
-            android:id="@+id/main_layout_container"
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:spanCount="7"
+            tools:listitem="@layout/component_calendar_date" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
