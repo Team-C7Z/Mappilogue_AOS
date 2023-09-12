@@ -18,6 +18,7 @@ import com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.adapter.AddTodoCol
 import com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.adapter.AddTodoLocationAdapter
 import com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.dialog.add_todo.DialogAddTodoPickDate
 import com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.dialog.location.DialogAddTodoSearchLocation
+import com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.dialog.time.DialogAddTodoSetTime
 import com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.viewmodel.AddTodoViewModel
 import com.c7z.mappilogue_aos.presentation.util.ItemTouchCallback
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,7 +35,7 @@ class AddTodoFragment : Fragment() {
     }
 
     private val locationAdapter by lazy {
-        AddTodoLocationAdapter(::onLocationDeleteChecked)
+        AddTodoLocationAdapter(::onLocationDeleteChecked, ::onLocationTimeClicked)
     }
     private val itemTouchHelper by lazy { ItemTouchHelper(ItemTouchCallback(locationAdapter)) }
 
@@ -136,6 +137,15 @@ class AddTodoFragment : Fragment() {
             viewModel.removeLocationList(position)
         }
         viewModel.initCheckedLocationList()
+    }
+
+    private fun onLocationTimeClicked(position : Int) {
+        DialogAddTodoSetTime(::onLocationTimeSave).show(requireActivity().supportFragmentManager, position.toString())
+    }
+
+    private fun onLocationTimeSave(position : Int, time : String) {
+        locationAdapter.locationData[position].time = time
+        locationAdapter.notifyItemChanged(position)
     }
 
     private fun setSelectedColor(item: ResponseTodoColor.ResultTodoColor) {

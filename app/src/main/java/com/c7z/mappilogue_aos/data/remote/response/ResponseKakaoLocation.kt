@@ -14,6 +14,7 @@ data class ResponseKakaoLocation (
         val road_address_name : String,
         val x : String,
         val y : String,
+        var time : String = "설정 안 함",
         var isChecked : Boolean = false
             )
 }

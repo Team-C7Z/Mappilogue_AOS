@@ -9,7 +9,8 @@ import com.c7z.mappilogue_aos.databinding.ItemAddTodoLocationsBinding
 import com.c7z.mappilogue_aos.presentation.util.ItemTouchHelperListener
 
 class AddTodoLocationAdapter(
-    private val onChecked: (Int, Boolean) -> Unit
+    private val onChecked: (Int, Boolean) -> Unit,
+    private val onTimeClicked : (Int) -> Unit
 ) : RecyclerView.Adapter<AddTodoLocationAdapter.AddTodoLocationViewHolder>(),
     ItemTouchHelperListener {
     var locationData = mutableListOf<ResponseKakaoLocation.Document>()
@@ -24,12 +25,11 @@ class AddTodoLocationAdapter(
             binding.itemAddTodoLocationsCheckCheck.isChecked = item.isChecked
             binding.itemAddTodoLocationsCheckCheck.setOnClickListener { it ->
                 item.isChecked = item.isChecked.not().also { _ ->
-                    onChecked.invoke(
-                        absoluteAdapterPosition,
-                        (it as CheckBox).isChecked
-                    )
+                    onChecked.invoke(absoluteAdapterPosition, (it as CheckBox).isChecked)
                 }
             }
+
+            binding.itemAddTodoLocationsTvTime.setOnClickListener { onTimeClicked.invoke(absoluteAdapterPosition) }
         }
     }
 

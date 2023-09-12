@@ -29,4 +29,6 @@
     <string name="add_todo_check_cancel_location">선택취소</string>
 
     <string name="add_todo_search_location_search">장소 검색</string>
+
+    <string name="add_todo_set_time_remove_time">시간삭제</string>
 </resources>
