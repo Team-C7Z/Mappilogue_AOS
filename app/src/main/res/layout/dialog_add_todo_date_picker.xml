@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gary_1.5"
+        android:translationZ="1dp">
+
+        <NumberPicker
+            android:id="@+id/dialog_add_todo_picker_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:selectionDividerHeight="0dp"
+            android:theme="@style/YearMonthPicker"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/dialog_add_todo_picker_month"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-5dp"
+            android:fontFamily="@font/pretendard_regular"
+            android:text="년"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="@id/dialog_add_todo_picker_year"
+            app:layout_constraintStart_toEndOf="@id/dialog_add_todo_picker_year"
+            app:layout_constraintTop_toTopOf="@id/dialog_add_todo_picker_year" />
+
+        <NumberPicker
+            android:id="@+id/dialog_add_todo_picker_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:selectionDividerHeight="0dp"
+            android:theme="@style/YearMonthPicker"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/dialog_add_todo_picker_day"
+            app:layout_constraintStart_toEndOf="@id/dialog_add_todo_picker_year"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-10dp"
+            android:fontFamily="@font/pretendard_regular"
+            android:text="월"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="@id/dialog_add_todo_picker_month"
+            app:layout_constraintStart_toEndOf="@id/dialog_add_todo_picker_month"
+            app:layout_constraintTop_toTopOf="@id/dialog_add_todo_picker_month" />
+
+        <NumberPicker
+            android:id="@+id/dialog_add_todo_picker_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:selectionDividerHeight="0dp"
+            android:theme="@style/YearMonthPicker"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/dialog_add_todo_picker_month"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-10dp"
+            android:fontFamily="@font/pretendard_regular"
+            android:text="일"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="@id/dialog_add_todo_picker_day"
+            app:layout_constraintStart_toEndOf="@id/dialog_add_todo_picker_day"
+            app:layout_constraintTop_toTopOf="@id/dialog_add_todo_picker_day" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_year_month_picker_selection"
+            app:layout_constraintBottom_toBottomOf="@id/dialog_add_todo_picker_year"
+            app:layout_constraintTop_toTopOf="@id/dialog_add_todo_picker_year">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

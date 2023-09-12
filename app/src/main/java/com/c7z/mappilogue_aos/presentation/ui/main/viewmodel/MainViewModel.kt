@@ -15,6 +15,9 @@ class MainViewModel : ViewModel() {
     private val _title = MutableLiveData<String>()
     val title : LiveData<String> = _title
 
+    private val _isCalendarDialogOpened = MutableLiveData<Boolean>(false)
+    val isCalendarDialogOpened : LiveData<Boolean> = _isCalendarDialogOpened
+
     fun setLogoTag(tag: Boolean) {
         _setLogoTag.value = tag
     }
@@ -22,6 +25,14 @@ class MainViewModel : ViewModel() {
     fun setTitleTag(tag: Boolean, title: String) {
         _setTitleTag.value = tag
         _title.value = title
+    }
+
+    fun notifyCalendarDialogOpened() {
+        _isCalendarDialogOpened.value = true
+    }
+
+    fun notifyCalendarDialogClosed() {
+        _isCalendarDialogOpened.value = false
     }
 }
 

@@ -11,6 +11,7 @@ class CalendarViewModel : ViewModel() {
     private val _requireMonth = MutableLiveData<Int>()
     val requireMonth : LiveData<Int> = _requireMonth
 
+
     fun setRequireYear(year : Int) {
         _requireYear.value = year
     }
@@ -18,4 +19,6 @@ class CalendarViewModel : ViewModel() {
     fun setRequireMonth(month : Int) {
         _requireMonth.value = month
     }
+
+
 }

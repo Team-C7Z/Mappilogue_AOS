@@ -14,6 +14,7 @@
     <color name="gray_4">#9B9791</color>
     <color name="gray_3">#C9C6C2</color>
     <color name="gray_2">#EAE6E1</color>
+    <color name="gary_1.5">#F5F3F0</color>
     <color name="gray_1">#F9F8F7</color>
 
     <color name="green_1">#2EBD3D</color>
@@ -21,6 +22,8 @@
     <color name="green_3">#43B54E</color>
 
     <color name="red_1">#F14C4C</color>
+
+    <color name="blue_1">#3C58EE</color>
 
 
 </resources>

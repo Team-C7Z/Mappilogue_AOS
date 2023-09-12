@@ -31,6 +31,10 @@
         <activity android:name=".presentation.ui.SignIn.SignInActivity"
             android:exported="false" />
 
+        <!-- TodoActivity -->
+        <activity android:name=".presentation.ui.todo.TodoActivity"
+            android:exported="false" />
+
         <!-- FCM -->
         <service android:name=".data.remote.service.MyFirebaseMessagingService"
             android:exported="true">

@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Mappilogue_AOS" parent="Theme.MaterialComponents.DayNight.NoActionBar">
        
-        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:statusBarColor">@color/gray_1</item>
         <item name="android:windowLightStatusBar">true</item>
         <!-- Customize your theme here. -->
     </style>
@@ -11,6 +11,12 @@
         <item name="android:statusBarColor">@color/gray_1</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowBackground">@drawable/bg_splash</item>
+    </style>
+
+    <style name="YearMonthPicker">
+        <item name="android:textSize">22sp</item>
+        <item name="fontFamily">@font/pretendard_medium</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <!-- font style -->

@@ -4,20 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View" />
+        <variable
+            name="fragment"
+            type="com.c7z.mappilogue_aos.presentation.ui.main.calendar.CalendarFragment" />
 
         <variable
             name="viewModel"
             type="com.c7z.mappilogue_aos.presentation.ui.main.calendar.viewmodel.CalendarViewModel" />
+
+        <variable
+            name="mainViewModel"
+            type="com.c7z.mappilogue_aos.presentation.ui.main.viewmodel.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/gray_1">
 
         <LinearLayout
             android:id="@+id/fg_calendar_layout_year_month"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -26,30 +36,139 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{@string/calendar_current_year_month(viewModel.requireYear, viewModel.requireMonth)}"
-                android:fontFamily="@font/pretendard_medium"
-                android:textSize="18sp"
-                android:lineHeight="28dp"
+                android:includeFontPadding="false"
                 android:paddingVertical="3dp"
+                android:text="@{@string/calendar_current_year_month(viewModel.requireYear, viewModel.requireMonth)}"
+                android:textAppearance="@style/Subtitle_01"
                 android:textColor="@color/black"
                 tools:text="2023년 4월" />
-            
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_chevron_down" />
+                android:layout_marginStart="3dp"
+                android:src="@drawable/ic_chervon_down" />
 
         </LinearLayout>
 
-        <com.c7z.mappilogue_aos.presentation.ui.component.ComponentCalendar
+        <include
+            android:id="@+id/fg_calendar_layout_picker"
+            layout="@layout/item_calendar_year_month_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/fg_calendar_layout_legend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="16dp"
+            android:paddingVertical="6dp"
+            app:layout_constraintTop_toBottomOf="@id/fg_calendar_layout_year_month">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="일"
+                android:textAppearance="@style/Caption_02"
+                android:textColor="@color/red_1" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="월"
+                android:textAppearance="@style/Caption_02"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="화"
+                android:textAppearance="@style/Caption_02"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="수"
+                android:textAppearance="@style/Caption_02"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="목"
+                android:textAppearance="@style/Caption_02"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="금"
+                android:textAppearance="@style/Caption_02"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="토"
+                android:textAppearance="@style/Caption_02"
+                android:textColor="@color/blue_1" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <com.kizitonwose.calendar.view.CalendarView
             android:id="@+id/fg_calendar_layout_calendar"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@id/fg_calendar_layout_year_month"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            android:layout_marginTop="6dp"
+            android:paddingHorizontal="16dp"
+            android:clipToPadding="false"
+            app:cv_daySize="rectangle"
+            app:cv_dayViewResource="@layout/component_calendar_date"
+            app:cv_orientation="horizontal"
+            app:cv_outDateStyle="endOfRow"
+            app:cv_scrollPaged="true"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fg_calendar_layout_legend"
+            tools:listitem="@layout/component_calendar_date" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_calendar_fab_plus"
+            android:onClick="@{() -> fragment.openTodoActivity()}"
+            android:visibility="@{mainViewModel.isCalendarDialogOpened ? View.GONE : View.VISIBLE}"
+            app:backgroundTint="@color/green_1"
+            app:borderWidth="0dp"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="@color/white" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
