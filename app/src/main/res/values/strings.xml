@@ -24,4 +24,9 @@
     <string name="add_todo_add_location">장소 추가하기</string>
     <string name="add_todo_alarm">알림</string>
     <string name="add_todo_repeat">반복</string>
+    <string name="add_todo_delete_location">삭제하기</string>
+    <string name="add_todo_check_delete_location">선택삭제</string>
+    <string name="add_todo_check_cancel_location">선택취소</string>
+
+    <string name="add_todo_search_location_search">장소 검색</string>
 </resources>

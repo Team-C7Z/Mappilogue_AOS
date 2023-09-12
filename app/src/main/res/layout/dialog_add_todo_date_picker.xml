@@ -6,11 +6,11 @@
     <data>
         <variable
             name="dialog"
-            type="com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.dialog.DialogAddTodoPickDate" />
+            type="com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.dialog.add_todo.DialogAddTodoPickDate" />
 
         <variable
             name="viewModel"
-            type="com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.dialog.viewmodel.DialogAddTodoPickDateViewModel" />
+            type="com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.dialog.add_todo.viewmodel.DialogAddTodoPickDateViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

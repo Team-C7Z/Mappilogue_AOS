@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="dialog"
+            type="com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.dialog.location.DialogAddTodoSearchLocation" />
+
+        <variable
+            name="viewModel"
+            type="com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.dialog.location.viewmodel.DialogAddTodoSearchLocationViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_white_24"
+        android:translationZ="1dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/dialog_add_todo_search_location_layout_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/bg_gray15_12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/dialog_add_todo_search_location_edt_content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:background="@android:color/transparent"
+                android:hint="@string/add_todo_search_location_search"
+                android:imeOptions="actionSearch"
+                android:paddingVertical="8dp"
+                android:text="@={viewModel.userInputContent}"
+                android:textAppearance="@style/Body_01"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray_3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/dialog_add_todo_search_location_rv_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_marginTop="12dp"
+            android:paddingHorizontal="16dp"
+            android:overScrollMode="never"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dialog_add_todo_search_location_layout_search" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

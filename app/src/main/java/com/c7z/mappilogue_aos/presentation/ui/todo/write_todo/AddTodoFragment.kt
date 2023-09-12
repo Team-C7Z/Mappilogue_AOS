@@ -10,17 +10,19 @@ import androidx.core.graphics.toColorInt
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.c7z.mappilogue_aos.R
 import com.c7z.mappilogue_aos.data.remote.response.ResponseTodoColor
 import com.c7z.mappilogue_aos.databinding.FragmentAddTodoBinding
 import com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.adapter.AddTodoColorAdapter
-import com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.dialog.DialogAddTodoPickDate
+import com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.adapter.AddTodoLocationAdapter
+import com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.dialog.add_todo.DialogAddTodoPickDate
+import com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.dialog.location.DialogAddTodoSearchLocation
 import com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.viewmodel.AddTodoViewModel
+import com.c7z.mappilogue_aos.presentation.util.ItemTouchCallback
 import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.internal.notify
 import java.time.LocalDate
-import java.time.Year
-import java.time.YearMonth
 
 @AndroidEntryPoint
 class AddTodoFragment : Fragment() {
@@ -30,6 +32,11 @@ class AddTodoFragment : Fragment() {
     private val colorAdapter by lazy {
         AddTodoColorAdapter(::setSelectedColor)
     }
+
+    private val locationAdapter by lazy {
+        AddTodoLocationAdapter(::onLocationDeleteChecked)
+    }
+    private val itemTouchHelper by lazy { ItemTouchHelper(ItemTouchCallback(locationAdapter)) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,6 +61,7 @@ class AddTodoFragment : Fragment() {
     private fun initUi() {
         initColorRv()
         initDates()
+        initLocationRv()
     }
 
     private fun initObserve() {
@@ -81,6 +89,11 @@ class AddTodoFragment : Fragment() {
         observeDates()
     }
 
+    private fun initLocationRv() {
+        binding.fgAddTodoRvLocations.adapter = locationAdapter
+        itemTouchHelper.attachToRecyclerView(binding.fgAddTodoRvLocations)
+    }
+
     private fun observeDates() {
         viewModel.startDate.observe(viewLifecycleOwner) {
             binding.fgAddTodoTvStartDate.text = it.convertToDate()
@@ -89,6 +102,40 @@ class AddTodoFragment : Fragment() {
         viewModel.endDate.observe(viewLifecycleOwner) {
             binding.fgAddTodoTvEndDate.text = it.convertToDate()
         }
+
+        viewModel.locationList.observe(viewLifecycleOwner) {
+            locationAdapter.locationData = it
+            locationAdapter.notifyDataSetChanged()
+        }
+
+        viewModel.checkStatus.observe(viewLifecycleOwner) {
+            locationAdapter.checkStatus = it
+            locationAdapter.notifyDataSetChanged()
+        }
+    }
+
+    private fun onLocationDeleteChecked(position : Int, selected : Boolean) {
+        when(selected) {
+            true -> viewModel.appendCheckedLocationList(position)
+            else -> viewModel.removeCheckedLocationList(position)
+        }
+    }
+
+    fun onLocationCheckClicked() {
+        viewModel.changeCheckStatus()
+
+        if(viewModel.checkStatus.value == true) {
+            locationAdapter.initSelectClicked()
+            viewModel.initCheckedLocationList()
+        }
+    }
+
+    fun onLocationDeleteClicked() {
+        for (i in 0 until viewModel.checkedLocationList.size) {
+            val position = if((viewModel.checkedLocationList[i] - i) <= 0) 0 else viewModel.checkedLocationList[i] - i
+            viewModel.removeLocationList(position)
+        }
+        viewModel.initCheckedLocationList()
     }
 
     private fun setSelectedColor(item: ResponseTodoColor.ResultTodoColor) {
@@ -118,6 +165,10 @@ class AddTodoFragment : Fragment() {
 
     fun openDatePickerDialog() {
         DialogAddTodoPickDate().show(requireActivity().supportFragmentManager, null)
+    }
+
+    fun openLocationSearchDialog() {
+        DialogAddTodoSearchLocation().show(requireActivity().supportFragmentManager, null)
     }
 
     private fun setColorTextWhite() {

@@ -1,4 +1,4 @@
-package com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.dialog.viewmodel
+package com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.dialog.add_todo.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

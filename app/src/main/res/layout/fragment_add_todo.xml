@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -14,275 +15,381 @@
             type="com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.viewmodel.AddTodoViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:animateLayoutChanges="true"
-        android:background="@color/gray_1"
-        android:clickable="true">
+        android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/fg_add_todo_edt_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="22dp"
-            android:background="@android:color/transparent"
-            android:hint="@string/add_todo_title_hint"
-            android:paddingVertical="12dp"
-            android:textAppearance="@style/Title_02"
-            android:textColorHint="@color/gray_3"
-            app:layout_constraintEnd_toStartOf="@id/fg_add_todo_card_change_fragment"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
+            android:background="@color/gray_1"
+            android:clickable="true">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/fg_add_todo_card_change_fragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:onClick="@{() -> viewModel.changeColorListVisibility()}"
-            app:cardBackgroundColor="@color/black"
-            app:cardCornerRadius="23dp"
-            app:cardElevation="0dp"
-            app:layout_constraintBottom_toBottomOf="@id/fg_add_todo_edt_title"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/fg_add_todo_edt_title">
+            <EditText
+                android:id="@+id/fg_add_todo_edt_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="22dp"
+                android:background="@android:color/transparent"
+                android:hint="@string/add_todo_title_hint"
+                android:paddingVertical="12dp"
+                android:textAppearance="@style/Title_02"
+                android:textColorHint="@color/gray_3"
+                app:layout_constraintEnd_toStartOf="@id/fg_add_todo_card_change_fragment"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/fg_add_todo_card_change_fragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:onClick="@{() -> viewModel.changeColorListVisibility()}"
+                app:cardBackgroundColor="@color/black"
+                app:cardCornerRadius="23dp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/fg_add_todo_edt_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/fg_add_todo_edt_title">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/fg_add_todo_tv_change_color"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginStart="11dp"
+                        android:layout_marginEnd="5dp"
+                        android:text="@string/add_todo_color"
+                        android:textAppearance="@style/Caption_01"
+                        android:textColor="@color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/fg_add_todo_iv_change_color"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/fg_add_todo_iv_change_color"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="11dp"
+                        android:layout_marginEnd="12dp"
+                        android:src="@{viewModel.colorVisibility ? @drawable/ic_chervon_down : @drawable/ic_chervon_up}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/white" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/fg_add_todo_rv_colors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:paddingVertical="18dp"
+                android:visibility="@{viewModel.colorVisibility ? View.VISIBLE : View.GONE}"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fg_add_todo_edt_title"
+                app:spanCount="5" />
+
+            <View
+                android:id="@+id/fg_add_todo_view_divider_01"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="16dp"
+                android:background="@color/gray_2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fg_add_todo_rv_colors" />
+
+            <LinearLayout
+                android:id="@+id/fg_add_todo_layout_dates"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/fg_add_todo_view_divider_01">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/fg_add_todo_btn_start_date"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick='@{() -> fragment.openDatePickerDialog()}'>
+
+                    <TextView
+                        android:id="@+id/fg_add_todo_tv_start_date_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/common_start_time"
+                        android:textAppearance="@style/Body_02"
+                        android:textColor="@color/gray_5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/fg_add_todo_tv_start_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="16dp"
+                        android:textAppearance="@style/Title_02"
+                        android:textColor="@color/black"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/fg_add_todo_tv_start_date_title" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/gray_2" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/fg_add_todo_btn_end_date"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick='@{() -> fragment.openDatePickerDialog()}'>
+
+                    <TextView
+                        android:id="@+id/fg_add_todo_tv_end_date_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/common_end_time"
+                        android:textAppearance="@style/Body_02"
+                        android:textColor="@color/gray_5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/fg_add_todo_tv_end_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="16dp"
+                        android:textAppearance="@style/Title_02"
+                        android:textColor="@color/black"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/fg_add_todo_tv_end_date_title" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/fg_add_todo_view_divider_02"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="16dp"
+                android:background="@color/gray_2"
+                app:layout_constraintTop_toBottomOf="@id/fg_add_todo_layout_dates" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fg_add_todo_layout_alarm"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                app:layout_constraintTop_toBottomOf="@id/fg_add_todo_view_divider_02">
 
-                <TextView
-                    android:id="@+id/fg_add_todo_tv_change_color"
+                <ImageView
+                    android:id="@+id/fg_add_todo_iv_alarm"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="5dp"
-                    android:layout_marginStart="11dp"
-                    android:layout_marginEnd="5dp"
-                    android:text="@string/add_todo_color"
-                    android:textAppearance="@style/Caption_01"
-                    android:textColor="@color/white"
+                    android:layout_marginVertical="16dp"
+                    android:src="@drawable/ic_add_todo_alarm"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/fg_add_todo_iv_change_color"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/fg_add_todo_iv_change_color"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="11dp"
-                    android:layout_marginEnd="12dp"
-                    android:src="@{viewModel.colorVisibility ? @drawable/ic_chervon_down : @drawable/ic_chervon_up}"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/white" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/fg_add_todo_rv_colors"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:paddingVertical="18dp"
-            android:visibility="@{viewModel.colorVisibility ? View.VISIBLE : View.GONE}"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fg_add_todo_edt_title"
-            app:spanCount="5" />
-
-        <View
-            android:id="@+id/fg_add_todo_view_divider_01"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginHorizontal="16dp"
-            android:background="@color/gray_2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fg_add_todo_rv_colors" />
-
-        <LinearLayout
-            android:id="@+id/fg_add_todo_layout_dates"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/fg_add_todo_view_divider_01">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/fg_add_todo_btn_start_date"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick='@{() -> fragment.openDatePickerDialog()}'>
-
                 <TextView
-                    android:id="@+id/fg_add_todo_tv_start_date_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/common_start_time"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/add_todo_alarm"
                     android:textAppearance="@style/Body_02"
                     android:textColor="@color/gray_5"
-                    android:layout_marginTop="15dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintBottom_toBottomOf="@id/fg_add_todo_iv_alarm"
+                    app:layout_constraintStart_toEndOf="@id/fg_add_todo_iv_alarm"
+                    app:layout_constraintTop_toTopOf="@id/fg_add_todo_iv_alarm" />
 
-                <TextView
-                    android:id="@+id/fg_add_todo_tv_start_date"
+                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="@style/Title_02"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="16dp"
-                    app:layout_constraintTop_toBottomOf="@id/fg_add_todo_tv_start_date_title"
+                    android:src="@drawable/ic_chevron_right"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@color/gray_2" />
+                android:id="@+id/fg_add_todo_view_divider_03"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginHorizontal="16dp"
+                android:background="@color/gray_2"
+                app:layout_constraintTop_toBottomOf="@id/fg_add_todo_layout_alarm" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/fg_add_todo_btn_end_date"
-                android:layout_width="0dp"
+                android:id="@+id/fg_add_todo_layout_repeat"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick='@{() -> fragment.openDatePickerDialog()}'>
+                android:layout_marginHorizontal="16dp"
+                app:layout_constraintTop_toBottomOf="@id/fg_add_todo_view_divider_03">
 
-                <TextView
-                    android:id="@+id/fg_add_todo_tv_end_date_title"
+                <ImageView
+                    android:id="@+id/fg_add_todo_iv_repeat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/common_end_time"
-                    android:textAppearance="@style/Body_02"
-                    android:textColor="@color/gray_5"
-                    android:layout_marginTop="15dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
-
-                <TextView
-                    android:id="@+id/fg_add_todo_tv_end_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="@style/Title_02"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="16dp"
-                    app:layout_constraintTop_toBottomOf="@id/fg_add_todo_tv_end_date_title"
+                    android:layout_marginVertical="16dp"
+                    android:src="@drawable/ic_add_todo_repeat"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/add_todo_repeat"
+                    android:textAppearance="@style/Body_02"
+                    android:textColor="@color/gray_5"
+                    app:layout_constraintBottom_toBottomOf="@id/fg_add_todo_iv_repeat"
+                    app:layout_constraintStart_toEndOf="@id/fg_add_todo_iv_repeat"
+                    app:layout_constraintTop_toTopOf="@id/fg_add_todo_iv_repeat" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_chevron_right"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </LinearLayout>
-
-        <View
-            android:id="@+id/fg_add_todo_view_divider_02"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/gray_2"
-            android:layout_marginHorizontal="16dp"
-            app:layout_constraintTop_toBottomOf="@id/fg_add_todo_layout_dates" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/fg_add_todo_layout_alarm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            app:layout_constraintTop_toBottomOf="@id/fg_add_todo_view_divider_02" >
-
-            <ImageView
-                android:id="@+id/fg_add_todo_iv_alarm"
+            <LinearLayout
+                android:id="@+id/fg_add_todo_btn_delete_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_add_todo_alarm"
-                android:layout_marginVertical="16dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:layout_marginEnd="16dp"
+                android:onClick="@{() -> fragment.onLocationDeleteClicked()}"
+                android:orientation="horizontal"
+                android:visibility="@{viewModel.checkStatus ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fg_add_todo_layout_repeat">
 
-            <TextView
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_add_todo_delete" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/add_todo_delete_location"
+                    android:textAppearance="@style/Body_02"
+                    android:textColor="@color/gray_5" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fg_add_todo_btn_check_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/add_todo_alarm"
-                android:textAppearance="@style/Body_02"
-                android:textColor="@color/gray_5"
-                android:layout_marginStart="8dp"
-                app:layout_constraintStart_toEndOf="@id/fg_add_todo_iv_alarm"
-                app:layout_constraintTop_toTopOf="@id/fg_add_todo_iv_alarm"
-                app:layout_constraintBottom_toBottomOf="@id/fg_add_todo_iv_alarm" />
+                android:layout_marginEnd="16dp"
+                android:onClick="@{() -> fragment.onLocationCheckClicked()}"
+                android:orientation="horizontal"
+                android:visibility="@{viewModel.locationList == null || viewModel.locationList.empty ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toStartOf="@id/fg_add_todo_btn_delete_location"
+                app:layout_constraintTop_toBottomOf="@id/fg_add_todo_layout_repeat">
 
-            <ImageView
-                android:layout_width="wrap_content"
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_add_todo_check" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="4dp"
+                    android:text="@{viewModel.checkStatus ? @string/add_todo_check_cancel_location : @string/add_todo_check_delete_location}"
+                    android:textAppearance="@style/Body_02"
+                    android:textColor="@color/gray_5" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/fg_add_todo_rv_locations"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_chevron_right"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                android:layout_marginTop="6dp"
+                android:orientation="vertical"
+                android:overScrollMode="never"
+                android:paddingHorizontal="16dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/fg_add_todo_btn_check_location" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:layout_margin="16dp"
+                android:background="@drawable/bg_black_12"
+                android:onClick="@{() -> fragment.openLocationSearchDialog()}"
+                app:layout_constraintTop_toBottomOf="@id/fg_add_todo_rv_locations">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_add_todo_add_location" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="7dp"
+                        android:text="@string/add_todo_add_location"
+                        android:textAppearance="@style/Body_03"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <View
-            android:id="@+id/fg_add_todo_view_divider_03"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/gray_2"
-            android:layout_marginHorizontal="16dp"
-            app:layout_constraintTop_toBottomOf="@id/fg_add_todo_layout_alarm" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/fg_add_todo_layout_repeat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            app:layout_constraintTop_toBottomOf="@id/fg_add_todo_view_divider_03" >
-
-            <ImageView
-                android:id="@+id/fg_add_todo_iv_repeat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_add_todo_repeat"
-                android:layout_marginVertical="16dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/add_todo_repeat"
-                android:textAppearance="@style/Body_02"
-                android:textColor="@color/gray_5"
-                android:layout_marginStart="8dp"
-                app:layout_constraintStart_toEndOf="@id/fg_add_todo_iv_repeat"
-                app:layout_constraintTop_toTopOf="@id/fg_add_todo_iv_repeat"
-                app:layout_constraintBottom_toBottomOf="@id/fg_add_todo_iv_repeat" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_chevron_right"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </layout>

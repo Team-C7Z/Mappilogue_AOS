@@ -1,24 +1,18 @@
-package com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.dialog
+package com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.dialog.add_todo
 
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Point
 import android.graphics.drawable.ColorDrawable
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.adapters.CalendarViewBindingAdapter.setDate
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.c7z.mappilogue_aos.R
-import com.c7z.mappilogue_aos.databinding.ComponentCalendarDateBinding
 import com.c7z.mappilogue_aos.databinding.DialogAddTodoDatePickerBinding
 import com.c7z.mappilogue_aos.databinding.ItemDialogAddTodoPickDateDayBinding
-import com.c7z.mappilogue_aos.presentation.ui.main.calendar.CalendarFragment
-import com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.dialog.viewmodel.DialogAddTodoPickDateViewModel
+import com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.dialog.add_todo.viewmodel.DialogAddTodoPickDateViewModel
 import com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.viewmodel.AddTodoViewModel
 import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.DayPosition

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="checkStatus"
+            type="Boolean" />
+
+        <variable
+            name="checked"
+            type="Boolean" />
+
+        <variable
+            name="data"
+            type="com.c7z.mappilogue_aos.data.remote.response.ResponseKakaoLocation.Document" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_gray15_12"
+        android:layout_marginVertical="4dp">
+
+        <TextView
+            android:id="@+id/item_add_todo_locations_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{data.place_name}"
+            android:textAppearance="@style/Subtitle_01"
+            android:textColor="@color/black"
+            android:layout_marginTop="22dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add_todo_locations_chevron_right"
+            app:layout_constraintTop_toTopOf="@id/item_add_todo_locations_tv_title"
+            app:layout_constraintBottom_toBottomOf="@id/item_add_todo_locations_tv_title"
+            app:layout_constraintStart_toEndOf="@id/item_add_todo_locations_tv_title" />
+
+        <ImageView
+            android:id="@+id/item_add_todo_locations_iv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add_todo_locations_time"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="26dp"
+            app:layout_constraintStart_toStartOf="@id/item_add_todo_locations_tv_title"
+            app:layout_constraintTop_toBottomOf="@id/item_add_todo_locations_tv_title"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+        
+        <ImageView
+            android:id="@+id/item_add_todo_locations_iv_handle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add_todo_locations_handle"
+            android:visibility="@{checkStatus ? View.GONE : View.VISIBLE}"
+            android:layout_marginEnd="13dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <CheckBox
+            android:id="@+id/item_add_todo_locations_check_check"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:button="@null"
+            android:checked="@{checked}"
+            android:background="@drawable/selector_add_todo_locations_check"
+            android:visibility="@{checkStatus ? View.VISIBLE : View.GONE}"
+            android:layout_marginEnd="13dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

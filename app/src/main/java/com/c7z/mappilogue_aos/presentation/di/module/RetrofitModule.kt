@@ -1,6 +1,8 @@
-package com.c7z.mappilogue_aos.presentation.di
+package com.c7z.mappilogue_aos.presentation.di.module
 
 import com.c7z.mappilogue_aos.BuildConfig
+import com.c7z.mappilogue_aos.presentation.di.annotation.KakaoRetrofit
+import com.c7z.mappilogue_aos.presentation.di.annotation.MappilogueRetrofit
 import com.c7z.mappilogue_aos.presentation.util.XAccessTokenInterceptor
 import dagger.Module
 import dagger.Provides
@@ -33,6 +35,7 @@ class RetrofitModule {
 
     @Provides
     @Singleton
+    @MappilogueRetrofit
     fun provideRetrofit(
         okHttpClient: OkHttpClient,
         gsonConverterFactory: GsonConverterFactory
@@ -41,6 +44,18 @@ class RetrofitModule {
             .baseUrl(BuildConfig.DEV_BASE_URL)
             .addConverterFactory(gsonConverterFactory)
             .client(okHttpClient)
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    @KakaoRetrofit
+    fun provideKakaoRetrofit(
+        gsonConverterFactory: GsonConverterFactory
+    ): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(BuildConfig.KAKAO_BASE_URL)
+            .addConverterFactory(gsonConverterFactory)
             .build()
     }
 }

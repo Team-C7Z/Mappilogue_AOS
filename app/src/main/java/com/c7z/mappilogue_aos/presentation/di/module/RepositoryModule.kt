@@ -1,6 +1,8 @@
-package com.c7z.mappilogue_aos.presentation.di
+package com.c7z.mappilogue_aos.presentation.di.module
 
+import com.c7z.mappilogue_aos.data.remote.repository.KakaoRepositoryImpl
 import com.c7z.mappilogue_aos.data.remote.repository.ScheduleRepositoryImpl
+import com.c7z.mappilogue_aos.domain.repository.KakaoRepository
 import com.c7z.mappilogue_aos.domain.repository.ScheduleRepository
 import dagger.Binds
 import dagger.Module
@@ -13,4 +15,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindScheduleRepository(scheduleRepositoryImpl: ScheduleRepositoryImpl) : ScheduleRepository
+
+    @Binds
+    abstract fun bindKakaoRepository(kakaoRepositoryImpl: KakaoRepositoryImpl) : KakaoRepository
 }
