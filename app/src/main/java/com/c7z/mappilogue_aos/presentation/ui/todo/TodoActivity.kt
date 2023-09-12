@@ -9,7 +9,9 @@ import com.c7z.mappilogue_aos.R
 import com.c7z.mappilogue_aos.databinding.ActivityTodoBinding
 import com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.AddTodoFragment
 import com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.viewmodel.AddTodoViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TodoActivity : AppCompatActivity() {
     private lateinit var binding : ActivityTodoBinding
     private val viewModel: AddTodoViewModel by viewModels()

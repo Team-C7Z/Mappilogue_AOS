@@ -1,5 +1,6 @@
 package com.c7z.mappilogue_aos.presentation.ui.todo.write_todo
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,13 +17,18 @@ import com.c7z.mappilogue_aos.databinding.FragmentAddTodoBinding
 import com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.adapter.AddTodoColorAdapter
 import com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.dialog.DialogAddTodoPickDate
 import com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.viewmodel.AddTodoViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import java.time.LocalDate
+import java.time.Year
+import java.time.YearMonth
 
+@AndroidEntryPoint
 class AddTodoFragment : Fragment() {
     private lateinit var binding: FragmentAddTodoBinding
     private val viewModel: AddTodoViewModel by activityViewModels()
 
     private val colorAdapter by lazy {
-        AddTodoColorAdapter(::setSelectedColor).also { it.colors = colors() }
+        AddTodoColorAdapter(::setSelectedColor)
     }
 
     override fun onCreateView(
@@ -34,8 +40,7 @@ class AddTodoFragment : Fragment() {
 
         initBinding()
         initUi()
-
-        Log.e("----", "onCreateView: $tag", )
+        initObserve()
 
         return binding.root
     }
@@ -51,13 +56,27 @@ class AddTodoFragment : Fragment() {
         initDates()
     }
 
+    private fun initObserve() {
+        observeScheduleColor()
+    }
+
+    private fun observeScheduleColor() {
+        viewModel.colorData.observe(viewLifecycleOwner) {
+            colorAdapter.colors = it.toMutableList()
+            colorAdapter.notifyItemRangeChanged(0, it.size)
+        }
+    }
+
     private fun initColorRv() {
         binding.fgAddTodoRvColors.adapter = colorAdapter
+
+        /** 서버에 Color Data Request**/
+        viewModel.requestScheduleColorData()
     }
 
     private fun initDates() {
-        viewModel.setStartDate(tag!!)
-        viewModel.setEndDate(tag!!)
+        tag?.let { viewModel.setStartDate(it.convertToYearMonth()) }
+        tag?.let { viewModel.setEndDate(it.convertToYearMonth()) }
 
         observeDates()
     }
@@ -80,36 +99,34 @@ class AddTodoFragment : Fragment() {
     private fun selectedColorObserve() {
         viewModel.selectedColor.observe(viewLifecycleOwner) {
             binding.fgAddTodoCardChangeFragment.setCardBackgroundColor(it.code.toColorInt())
+
+            when(it.id) {
+                in 1..13 -> setColorTextBlack()
+                else -> setColorTextWhite()
+            }
         }
     }
 
-    private fun String.convertToDate() : String {
-        val dates = this.split("-").map { it.toInt() }
-        return "${dates[0]}년 ${dates[1]}월 ${dates[2]}일"
+    private fun String.convertToYearMonth() : LocalDate {
+        val date = this.split("-")
+        return LocalDate.of(date[0].toInt(), date[1].toInt(), date[2].toInt())
     }
 
-    fun openDatePickerDialog(type : String) {
-        val target = if(type == "Start") viewModel.startDate.value!! else viewModel.endDate.value!!
-        DialogAddTodoPickDate(type, target).show(requireActivity().supportFragmentManager, null)
+    private fun LocalDate.convertToDate() : String {
+        return "${this.year}년 ${this.monthValue}월 ${this.dayOfMonth}일"
     }
 
-    /** Dummy **/
-    fun colors(): MutableList<ResponseTodoColor.ResultTodoColor> =
-        mutableListOf<ResponseTodoColor.ResultTodoColor>().apply {
-            add(ResponseTodoColor.ResultTodoColor(0, "1", "#FFA1A1"))
-            add(ResponseTodoColor.ResultTodoColor(0, "1", "#FFAF82"))
-            add(ResponseTodoColor.ResultTodoColor(0, "1", "#F5DC82"))
-            add(ResponseTodoColor.ResultTodoColor(0, "1", "#F0F1B0"))
-            add(ResponseTodoColor.ResultTodoColor(0, "1", "#CAEDA8"))
-            add(ResponseTodoColor.ResultTodoColor(0, "1", "#B1E9BE"))
-            add(ResponseTodoColor.ResultTodoColor(0, "1", "#B2EAD6"))
-            add(ResponseTodoColor.ResultTodoColor(0, "1", "#B2EBE7"))
-            add(ResponseTodoColor.ResultTodoColor(0, "1", "#ABD9F3"))
-            add(ResponseTodoColor.ResultTodoColor(0, "1", "#BAD7FA"))
-            add(ResponseTodoColor.ResultTodoColor(0, "1", "#E6C3F2"))
-            add(ResponseTodoColor.ResultTodoColor(0, "1", "#F0B4D5"))
-            add(ResponseTodoColor.ResultTodoColor(0, "1", "#C9C6C2"))
-            add(ResponseTodoColor.ResultTodoColor(0, "1", "#9B9791"))
-            add(ResponseTodoColor.ResultTodoColor(0, "1", "#404040"))
-        }
+    fun openDatePickerDialog() {
+        DialogAddTodoPickDate().show(requireActivity().supportFragmentManager, null)
+    }
+
+    private fun setColorTextWhite() {
+        binding.fgAddTodoTvChangeColor.setTextColor(resources.getColor(R.color.white, null))
+        binding.fgAddTodoIvChangeColor.imageTintList = ColorStateList.valueOf(resources.getColor(R.color.white, null))
+    }
+
+    private fun setColorTextBlack() {
+        binding.fgAddTodoTvChangeColor.setTextColor(resources.getColor(R.color.black, null))
+        binding.fgAddTodoIvChangeColor.imageTintList = ColorStateList.valueOf(resources.getColor(R.color.black, null))
+    }
 }

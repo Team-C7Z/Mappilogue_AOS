@@ -3,96 +3,170 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="dialog"
+            type="com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.dialog.DialogAddTodoPickDate" />
+
+        <variable
+            name="viewModel"
+            type="com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.dialog.viewmodel.DialogAddTodoPickDateViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/gary_1.5"
+        android:background="@drawable/bg_white_24"
         android:translationZ="1dp">
 
-        <NumberPicker
-            android:id="@+id/dialog_add_todo_picker_year"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:selectionDividerHeight="0dp"
-            android:theme="@style/YearMonthPicker"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/dialog_add_todo_picker_month"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
+            android:id="@+id/dialog_add_todo_date_picker_tv_yearmonth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="-5dp"
-            android:fontFamily="@font/pretendard_regular"
-            android:text="년"
-            android:textColor="@color/black"
-            android:textSize="22sp"
-            app:layout_constraintBottom_toBottomOf="@id/dialog_add_todo_picker_year"
-            app:layout_constraintStart_toEndOf="@id/dialog_add_todo_picker_year"
-            app:layout_constraintTop_toTopOf="@id/dialog_add_todo_picker_year" />
+            android:textAppearance="@style/Body_03"
+            android:textColor="@color/gray_6"
+            android:text='@{viewModel.standardMonth.year + "년 " + viewModel.standardMonth.monthValue + "월"}'
+            android:layout_marginTop="17.5dp"
+            android:layout_marginStart="24dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-        <NumberPicker
-            android:id="@+id/dialog_add_todo_picker_month"
+        <ImageView
+            android:id="@+id/dialog_add_todo_date_picker_iv_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:selectionDividerHeight="0dp"
-            android:theme="@style/YearMonthPicker"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/dialog_add_todo_picker_day"
-            app:layout_constraintStart_toEndOf="@id/dialog_add_todo_picker_year"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:src="@drawable/ic_dialog_add_todo_date_picker_next"
+            android:onClick="@{() -> dialog.onNextClicked()}"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-        <TextView
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="-10dp"
-            android:fontFamily="@font/pretendard_regular"
-            android:text="월"
-            android:textColor="@color/black"
-            android:textSize="22sp"
-            app:layout_constraintBottom_toBottomOf="@id/dialog_add_todo_picker_month"
-            app:layout_constraintStart_toEndOf="@id/dialog_add_todo_picker_month"
-            app:layout_constraintTop_toTopOf="@id/dialog_add_todo_picker_month" />
-
-        <NumberPicker
-            android:id="@+id/dialog_add_todo_picker_day"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:src="@drawable/ic_dialog_add_todo_date_picker_before"
+            android:onClick="@{() -> dialog.onPreviousClicked()}"
             android:layout_marginEnd="20dp"
-            android:selectionDividerHeight="0dp"
-            android:theme="@style/YearMonthPicker"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/dialog_add_todo_picker_month"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/dialog_add_todo_date_picker_iv_next"
+            app:layout_constraintEnd_toStartOf="@id/dialog_add_todo_date_picker_iv_next" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="-10dp"
-            android:fontFamily="@font/pretendard_regular"
-            android:text="일"
-            android:textColor="@color/black"
-            android:textSize="22sp"
-            app:layout_constraintBottom_toBottomOf="@id/dialog_add_todo_picker_day"
-            app:layout_constraintStart_toEndOf="@id/dialog_add_todo_picker_day"
-            app:layout_constraintTop_toTopOf="@id/dialog_add_todo_picker_day" />
-
-        <LinearLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/dialog_add_todo_date_picker_layout_legend"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_year_month_picker_selection"
-            app:layout_constraintBottom_toBottomOf="@id/dialog_add_todo_picker_year"
-            app:layout_constraintTop_toTopOf="@id/dialog_add_todo_picker_year">
+            android:layout_marginTop="17.5dp"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="16dp"
+            android:paddingVertical="6dp"
+            app:layout_constraintTop_toBottomOf="@id/dialog_add_todo_date_picker_tv_yearmonth">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="5dp"
-                android:textSize="22sp" />
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="S"
+                android:textAppearance="@style/Body_01"
+                android:textColor="@color/black" />
 
-        </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="M"
+                android:textAppearance="@style/Body_01"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="T"
+                android:textAppearance="@style/Body_01"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="W"
+                android:textAppearance="@style/Body_01"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="T"
+                android:textAppearance="@style/Body_01"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="F"
+                android:textAppearance="@style/Body_01"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="S"
+                android:textAppearance="@style/Body_01"
+                android:textColor="@color/black" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <com.kizitonwose.calendar.view.CalendarView
+            android:id="@+id/dialog_add_todo_date_picker_view_calendar"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="18dp"
+            android:paddingHorizontal="16dp"
+            app:cv_daySize="rectangle"
+            app:cv_dayViewResource="@layout/item_dialog_add_todo_pick_date_day"
+            app:cv_orientation="horizontal"
+            app:cv_outDateStyle="@null"
+            app:cv_scrollPaged="true"
+            app:layout_constrainedHeight="true"
+            app:layout_constraintTop_toBottomOf="@id/dialog_add_todo_date_picker_layout_legend"
+            app:layout_constraintBottom_toTopOf="@id/dialog_add_todo_date_picker_tv_save"/>
+
+        <TextView
+            android:id="@+id/dialog_add_todo_date_picker_tv_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/common_okay"
+            android:textAppearance="@style/Body_03"
+            android:textColor="@color/green_1"
+            android:onClick="@{() -> dialog.onSaveClicked()}"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="22dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/dialog_add_todo_date_picker_tv_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/common_cancel"
+            android:textAppearance="@style/Body_03"
+            android:textColor="@color/green_1"
+            android:onClick="@{() -> dialog.onCancelClicked()}"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="22dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/dialog_add_todo_date_picker_tv_save" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

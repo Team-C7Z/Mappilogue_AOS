@@ -119,7 +119,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick='@{() -> fragment.openDatePickerDialog("Start")}'>
+                android:onClick='@{() -> fragment.openDatePickerDialog()}'>
 
                 <TextView
                     android:id="@+id/fg_add_todo_tv_start_date_title"
@@ -158,7 +158,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick='@{() -> fragment.openDatePickerDialog("End")}'>
+                android:onClick='@{() -> fragment.openDatePickerDialog()}'>
 
                 <TextView
                     android:id="@+id/fg_add_todo_tv_end_date_title"

@@ -4,7 +4,9 @@ import android.app.Application
 import android.content.SharedPreferences
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.google.firebase.analytics.FirebaseAnalytics
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class Mappilogue : Application() {
 
     companion object {
