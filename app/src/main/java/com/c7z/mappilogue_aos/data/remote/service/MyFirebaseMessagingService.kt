@@ -18,6 +18,7 @@ import com.google.firebase.messaging.RemoteMessage
 class MyFirebaseMessagingService : FirebaseMessagingService() {
     private val TAG = "FCM"
 
+    // 새 토큰 생성
     override fun onNewToken(token: String) {
         super.onNewToken(token)
         Log.d(TAG, "new token : $token")
@@ -26,16 +27,18 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)
 
-        Log.d(TAG, "From : " + remoteMessage.from)
-
-        if (remoteMessage.notification != null) sendNotification(remoteMessage)
-        else Log.d(TAG, "빈 메세지")
+        // 메세지에 데이터가 포함되어 있는지 확인
+        if (remoteMessage.data.isNotEmpty()) {
+            Log.d(TAG, "Message data : ${remoteMessage.data}")
+            sendNotification(remoteMessage.data["title"].toString(), remoteMessage.data["body"].toString())
+        } else {
+            remoteMessage.notification?.let {
+                sendNotification(remoteMessage.notification!!.title.toString(), remoteMessage.notification!!.body.toString())
+            }
+        }
     }
 
-    private fun sendNotification(remoteMessage: RemoteMessage) {
-        // id를 고유값으로 지정하여 알림이 개별 표시되도록 설정
-        val uniId: Int = (System.currentTimeMillis() / 7).toInt()
-
+    private fun sendNotification(title: String, body: String) {
         val intent = Intent(this, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 
@@ -48,8 +51,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         // 알림 정보
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.mipmap.ic_launcher)
-            .setContentTitle(remoteMessage.data["title"].toString())
-            .setContentText(remoteMessage.data["body"].toString())
+            .setContentTitle(title)
+            .setContentText(body)
             .setAutoCancel(true)
             .setSound(soundUri)
             .setContentIntent(pendingIntent)
@@ -63,6 +66,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         }
 
         // 알림 생성
-        notificationManager.notify(uniId, notificationBuilder.build())
+        notificationManager.notify(0, notificationBuilder.build())
     }
 }
