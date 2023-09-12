@@ -6,6 +6,9 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
 android {
     namespace 'com.c7z.mappilogue_aos'
     compileSdk 33
@@ -16,6 +19,8 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
+
+        buildConfigField "String", "DEV_BASE_URL", properties['DEV_BASE_URL']
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
