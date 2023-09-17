@@ -15,7 +15,7 @@ class Mappilogue : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        mSharedPreferences = applicationContext.getSharedPreferences("FitHub", MODE_PRIVATE)
+        mSharedPreferences = applicationContext.getSharedPreferences("Mappilogue", MODE_PRIVATE)
 
     }
 }
