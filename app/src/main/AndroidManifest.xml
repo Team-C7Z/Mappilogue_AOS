@@ -43,8 +43,21 @@
             android:name=".presentation.ui.onboarding.OnBoardingActivity"
             android:exported="true" />
         <activity
-            android:name=".presentation.ui.SignIn.SignInActivity"
+            android:name=".presentation.ui.signin.SignInActivity"
             android:exported="false" />
+
+        <!-- KAKAO SIGN IN -->
+        <activity
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:host="oauth"
+                    android:scheme="kakao${kakao_native_key}" />
+            </intent-filter>
+        </activity>
 
         <!-- TodoActivity -->
         <activity
