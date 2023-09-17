@@ -1,4 +1,4 @@
-package com.c7z.mappilogue_aos.presentation.ui.home
+package com.c7z.mappilogue_aos.presentation.ui.main.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import com.c7z.mappilogue_aos.R
 import com.c7z.mappilogue_aos.databinding.FragmentHomeBinding
-import com.c7z.mappilogue_aos.presentation.ui.home.viewmodel.HomeViewModel
+import com.c7z.mappilogue_aos.presentation.ui.main.home.viewmodel.HomeViewModel
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding

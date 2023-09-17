@@ -13,7 +13,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.c7z.mappilogue_aos.R
 import com.c7z.mappilogue_aos.databinding.ActivityMainBinding
-import com.c7z.mappilogue_aos.presentation.ui.home.HomeFragment
+import com.c7z.mappilogue_aos.presentation.ui.main.home.HomeFragment
 import com.c7z.mappilogue_aos.presentation.ui.main.calendar.CalendarFragment
 import com.c7z.mappilogue_aos.presentation.ui.main.viewmodel.MainViewModel
 import com.c7z.mappilogue_aos.presentation.ui.meet.MeetFragment
