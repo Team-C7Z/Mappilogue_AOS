@@ -1,14 +1,17 @@
 package com.c7z.mappilogue_aos.presentation.ui.signin
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Build.VERSION
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.c7z.mappilogue_aos.R
 import com.c7z.mappilogue_aos.databinding.ActivitySignInBinding
+import com.c7z.mappilogue_aos.presentation.ui.main.MainActivity
 import com.c7z.mappilogue_aos.presentation.ui.signin.viewmodel.SignInViewModel
 import com.google.firebase.messaging.FirebaseMessaging
 import com.kakao.sdk.auth.model.OAuthToken
@@ -28,11 +31,16 @@ class SignInActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_sign_in)
 
         initBinding()
+        initObserve()
         requestFcmToken()
     }
 
     private fun initBinding() {
         binding.activity = this
+    }
+
+    private fun initObserve() {
+        observeSignInStatus()
     }
 
     private fun requestFcmToken() {
@@ -78,6 +86,15 @@ class SignInActivity : AppCompatActivity() {
     private fun requestSignIn(token : String) {
         fcmToken?.let { it2 ->
             viewModel.requestSignIn(token, it2, if(checkAlarmPermission()) "ACTIVE" else "INACTIVE")
+        }
+    }
+
+    private fun observeSignInStatus() {
+        viewModel.signInStatus.observe(this) {
+            when(it) {
+                200 -> startActivity(Intent(this, MainActivity::class.java)).also { finish() }
+                else -> Toast.makeText(this, "로그인에 실패하였습니다.", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
