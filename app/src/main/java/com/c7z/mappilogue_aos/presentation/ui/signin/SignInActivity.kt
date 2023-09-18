@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import com.c7z.mappilogue_aos.R
 import com.c7z.mappilogue_aos.databinding.ActivitySignInBinding
 import com.c7z.mappilogue_aos.presentation.ui.main.MainActivity
+import com.c7z.mappilogue_aos.presentation.ui.sign_up_result.SignUpResultActivity
 import com.c7z.mappilogue_aos.presentation.ui.signin.viewmodel.SignInViewModel
 import com.google.firebase.messaging.FirebaseMessaging
 import com.kakao.sdk.auth.model.OAuthToken
@@ -93,6 +94,7 @@ class SignInActivity : AppCompatActivity() {
         viewModel.signInStatus.observe(this) {
             when(it) {
                 200 -> startActivity(Intent(this, MainActivity::class.java)).also { finish() }
+                201 -> startActivity(Intent(this, SignUpResultActivity::class.java)).also { finish() }
                 else -> Toast.makeText(this, "로그인에 실패하였습니다.", Toast.LENGTH_SHORT).show()
             }
         }

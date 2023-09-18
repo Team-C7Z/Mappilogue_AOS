@@ -21,7 +21,7 @@ class SignInViewModel @Inject constructor(private val signInRepository: SignInRe
         viewModelScope.launch {
             signInRepository.requestSignIn(RequestSignIn(socialToken, "KAKAO", fcmToken, isAlarmAccept))
                 .onSuccess { Log.e("----", "requestSignIn: $it", )
-                    _signInStatus.value = 200
+                    _signInStatus.value = if(it.type == "LOGIN") 200 else 201
                     saveUserData(it.accessToken, it.refreshToken)
                 }
                 .onFailure {

@@ -30,6 +30,10 @@
     <string name="request_permission_location_content">현재 위치에서 기록 검색</string>
     <string name="request_permission_grant_and_start">허용하고 시작하기</string>
 
+    <!-- 회원가입 결과 -->
+    <string name="sign_up_result_title">회원가입이 완료되었어요</string>
+    <string name="sign_up_result_subtitle">3초 뒤에 홈으로 이동할게요</string>
+
     <!-- 일정 추가하기 -->
     <string name="add_todo_title_hint">일정 제목을 적어 주세요</string>
     <string name="add_todo_color">색상</string>
