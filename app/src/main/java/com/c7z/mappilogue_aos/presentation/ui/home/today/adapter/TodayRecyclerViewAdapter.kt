@@ -2,12 +2,8 @@ package com.c7z.mappilogue_aos.presentation.ui.home.today.adapter
 
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
-import android.graphics.Rect
-import android.util.Log
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.c7z.mappilogue_aos.data.data.HomeTodayItem
 import com.c7z.mappilogue_aos.databinding.ItemRvTodayBinding
 
-class TodayRecyclerViewAdapter(private val homeTodayItem: ArrayList<HomeTodayItem>, private val context: Context)
+class TodayRecyclerViewAdapter(private val homeTodayItem: ArrayList<HomeTodayItem>?)
     :RecyclerView.Adapter<TodayRecyclerViewAdapter.ViewHolder>(){
 
     inner class ViewHolder(val binding: ItemRvTodayBinding): RecyclerView.ViewHolder(binding.root) {
@@ -48,10 +44,10 @@ class TodayRecyclerViewAdapter(private val homeTodayItem: ArrayList<HomeTodayIte
     }
 
     override fun onBindViewHolder(holder: TodayRecyclerViewAdapter.ViewHolder, position: Int) {
-        holder.bind(homeTodayItem[position])
+        holder.bind(homeTodayItem!![position])
     }
 
     override fun getItemCount(): Int {
-        return homeTodayItem.size
+        return homeTodayItem?.size ?: 0
     }
 }

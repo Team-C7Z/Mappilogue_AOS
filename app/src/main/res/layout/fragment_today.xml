@@ -10,6 +10,10 @@
         <variable
             name="fragment"
             type="com.c7z.mappilogue_aos.presentation.ui.home.today.TodayFragment" />
+
+        <variable
+            name="viewModel"
+            type="com.c7z.mappilogue_aos.presentation.ui.home.today.viewmodel.TodayViewModel" />
     </data>
 
     <ScrollView
@@ -31,13 +35,14 @@
                 android:padding="16dp"
                 android:overScrollMode="never"
                 android:nestedScrollingEnabled="false"
+                android:visibility='@{viewModel.homeListViewStatus ? View.GONE : View.VISIBLE}'
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/today_add_schedule_btn"
                 tools:itemCount="1"
-                tools:listitem="@layout/item_rv_today"
-                android:visibility="gone" />
+                tools:listitem="@layout/item_rv_today"/>
             
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/today_empty_container_cl"
@@ -46,10 +51,11 @@
                 android:layout_margin="16dp"
                 android:background="@drawable/bg_rec_radius_12"
                 android:backgroundTint="@color/gray_1.5"
+                android:visibility='@{viewModel.homeListViewStatus ? View.VISIBLE : View.GONE}'
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/today_add_schedule_btn">
+                app:layout_constraintBottom_toTopOf="@id/today_add_schedule_btn" >
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/today_empty_tv_container_cl"
@@ -130,11 +136,11 @@
                 android:orientation="horizontal"
                 android:clipToPadding="false"
                 android:overScrollMode="never"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/today_marked_tv"
                 tools:itemCount="1"
-                tools:listitem="@layout/item_rv_marked"
-                tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+                tools:listitem="@layout/item_rv_marked"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
