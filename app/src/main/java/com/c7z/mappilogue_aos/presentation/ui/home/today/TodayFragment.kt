@@ -2,7 +2,6 @@ package com.c7z.mappilogue_aos.presentation.ui.home.today
 
 import android.graphics.Rect
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -58,8 +57,6 @@ class TodayFragment: Fragment(){
         viewModel.homeMarkedList.observe(viewLifecycleOwner) {
             if(it.size > 3) it.take(3) as ArrayList<HomeMarkedItem>
         }
-
-        Log.d("homeList", viewModel.homeList.value.isNullOrEmpty().toString())
     }
 
     private fun initView() {

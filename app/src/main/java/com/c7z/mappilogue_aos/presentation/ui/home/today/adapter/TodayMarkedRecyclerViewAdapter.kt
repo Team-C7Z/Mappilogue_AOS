@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 import com.c7z.mappilogue_aos.data.data.HomeMarkedItem
 import com.c7z.mappilogue_aos.databinding.ItemRvMarkedBinding
 
-class TodayMarkedRecyclerViewAdapter(private val todayMarkedItem: MutableList<HomeMarkedItem>?, private val context: Context)
+class TodayMarkedRecyclerViewAdapter(private val todayMarkedItem: ArrayList<HomeMarkedItem>?, private val context: Context)
     :RecyclerView.Adapter<TodayMarkedRecyclerViewAdapter.ViewHolder>(){
 
     inner class ViewHolder(val binding: ItemRvMarkedBinding): RecyclerView.ViewHolder(binding.root) {

@@ -9,7 +9,6 @@ import com.c7z.mappilogue_aos.data.data.HomeTodayItem
 import com.c7z.mappilogue_aos.data.data.HomeTodayPlaceItem
 
 class TodayViewModel: ViewModel() {
-
     // 더미 데이터
     private var homePlaceList1 = arrayListOf(
         HomeTodayPlaceItem("춘배식당", "9:00 AM"),
@@ -35,11 +34,4 @@ class TodayViewModel: ViewModel() {
         )
     }
     val homeMarkedList: LiveData<ArrayList<HomeMarkedItem>> = _homeMarkedList
-
-    private val _homeListViewStatus = MutableLiveData<Boolean>(false)
-    val homeListViewStatus : LiveData<Boolean> = _homeListViewStatus
-
-    private fun getViewStatus() {
-        _homeListViewStatus.value = !_homeList.value.isNullOrEmpty()
-    }
 }

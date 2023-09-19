@@ -48,6 +48,6 @@ class TodayRecyclerViewAdapter(private val homeTodayItem: ArrayList<HomeTodayIte
     }
 
     override fun getItemCount(): Int {
-        return homeTodayItem?.size ?: 0
+        return homeTodayItem!!.size
     }
 }
