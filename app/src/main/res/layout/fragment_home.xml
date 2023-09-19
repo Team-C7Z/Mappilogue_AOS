@@ -4,18 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" >
 
-    <data>
-        <import type="android.view.View" />
-
-        <variable
-            name="fragment"
-            type="com.c7z.mappilogue_aos.presentation.ui.home.HomeFragment" />
-
-        <variable
-            name="viewModel"
-            type="com.c7z.mappilogue_aos.presentation.ui.home.viewmodel.HomeViewModel" />
-    </data>
-
     <ScrollView
         android:id="@+id/home_sv"
         android:layout_width="match_parent"
