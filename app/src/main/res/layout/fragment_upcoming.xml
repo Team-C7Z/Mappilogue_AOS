@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="fragment"
+            type="com.c7z.mappilogue_aos.presentation.ui.home.upcoming.UpcomingFragment" />
+    </data>
+
+    <ScrollView
+        android:id="@+id/upcoming_nsv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        tools:context=".presentation.ui.home.upcoming.UpcomingFragment" >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/upcoming_main_container_cl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/upcoming_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:overScrollMode="never"
+                android:nestedScrollingEnabled="false"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/upcoming_add_schedule_btn"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_rv_upcoming"
+                android:visibility="gone" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/upcoming_empty_container_cl"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_margin="16dp"
+                android:background="@drawable/bg_rec_radius_12"
+                android:backgroundTint="@color/gray_1.5"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/upcoming_add_schedule_btn">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/upcoming_empty_tv_container_cl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" >
+
+                    <TextView
+                        android:id="@+id/upcoming_empty_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:text="@string/home_upcoming_empty"
+                        style="@style/Title_02"
+                        android:textColor="@color/gray_5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/upcoming_add_schedule_tv"/>
+
+                    <TextView
+                        android:id="@+id/upcoming_add_schedule_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:maxLines="1"
+                        android:text="@string/home_add_schedule"
+                        style="@style/Caption_02"
+                        android:textColor="@color/gray_6"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/upcoming_empty_tv" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/upcoming_add_schedule_btn"
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                android:layout_marginHorizontal="16dp"
+                android:background="@drawable/bg_rec_radius_12"
+                app:backgroundTint="@color/black"
+
+                app:icon="@drawable/ic_plus"
+                app:iconGravity="textStart"
+                app:iconPadding="7dp"
+                app:iconTint="@color/white"
+
+                android:text="@string/add_schedule_btn"
+                android:textColor="@color/white"
+                style="@style/Body_03"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/upcoming_rv"/>
+
+            <TextView
+                android:id="@+id/upcoming_marked_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="16dp"
+                android:text="@string/marked"
+                style="@style/Title_01"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/upcoming_add_schedule_btn" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/upcoming_marked_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:paddingHorizontal="16dp"
+                android:orientation="horizontal"
+                android:clipToPadding="false"
+                android:overScrollMode="never"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/upcoming_marked_tv"
+                tools:itemCount="3"
+                tools:listitem="@layout/item_rv_marked"
+                tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>
