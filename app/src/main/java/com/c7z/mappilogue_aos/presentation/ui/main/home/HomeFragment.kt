@@ -1,4 +1,4 @@
-package com.c7z.mappilogue_aos.presentation.ui.home
+package com.c7z.mappilogue_aos.presentation.ui.main.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
