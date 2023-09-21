@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 import com.c7z.mappilogue_aos.data.data.HomeMarkedItem
 import com.c7z.mappilogue_aos.databinding.ItemRvMarkedBinding
 
-class UpcomingMarkedRecyclerViewAdapter(private val upcomingMarkedItem: ArrayList<HomeMarkedItem>, private val context: Context)
+class UpcomingMarkedRecyclerViewAdapter(private val upcomingMarkedItem: ArrayList<HomeMarkedItem>?, private val context: Context)
     :RecyclerView.Adapter<UpcomingMarkedRecyclerViewAdapter.ViewHolder>(){
 
     inner class ViewHolder(val binding: ItemRvMarkedBinding): RecyclerView.ViewHolder(binding.root) {
@@ -40,11 +40,11 @@ class UpcomingMarkedRecyclerViewAdapter(private val upcomingMarkedItem: ArrayLis
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        if(position == upcomingMarkedItem.size) holder.add()
-        else holder.bind(upcomingMarkedItem[position])
+        if(position == (upcomingMarkedItem?.size ?: 0)) holder.add()
+        else holder.bind(upcomingMarkedItem!![position])
     }
 
     override fun getItemCount(): Int {
-        return (upcomingMarkedItem.size + 1)
+        return ((upcomingMarkedItem?.size ?: 0) + 1)
     }
 }

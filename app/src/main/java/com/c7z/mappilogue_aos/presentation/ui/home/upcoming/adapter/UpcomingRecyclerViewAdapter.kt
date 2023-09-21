@@ -1,6 +1,5 @@
 package com.c7z.mappilogue_aos.presentation.ui.home.upcoming.adapter
 
-import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.c7z.mappilogue_aos.data.data.HomeUpcomingItem
 import com.c7z.mappilogue_aos.databinding.ItemRvUpcomingBinding
 
-class UpcomingRecyclerViewAdapter(private val homeUpcomingItem: ArrayList<HomeUpcomingItem>, private val context: Context)
+class UpcomingRecyclerViewAdapter(private val homeUpcomingItem: ArrayList<HomeUpcomingItem>?)
     :RecyclerView.Adapter<UpcomingRecyclerViewAdapter.ViewHolder>(){
 
     inner class ViewHolder(val binding: ItemRvUpcomingBinding): RecyclerView.ViewHolder(binding.root) {
@@ -32,10 +31,10 @@ class UpcomingRecyclerViewAdapter(private val homeUpcomingItem: ArrayList<HomeUp
     }
 
     override fun onBindViewHolder(holder: UpcomingRecyclerViewAdapter.ViewHolder, position: Int) {
-        holder.bind(homeUpcomingItem[position])
+        holder.bind(homeUpcomingItem!![position])
     }
 
     override fun getItemCount(): Int {
-        return homeUpcomingItem.size
+        return homeUpcomingItem!!.size
     }
 }

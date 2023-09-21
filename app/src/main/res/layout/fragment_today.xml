@@ -35,7 +35,7 @@
                 android:padding="16dp"
                 android:overScrollMode="never"
                 android:nestedScrollingEnabled="false"
-                android:visibility='@{viewModel.homeListViewStatus ? View.GONE : View.VISIBLE}'
+                android:visibility='@{viewModel.homeList == null ? View.GONE : View.VISIBLE}'
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +51,7 @@
                 android:layout_margin="16dp"
                 android:background="@drawable/bg_rec_radius_12"
                 android:backgroundTint="@color/gray_1.5"
-                android:visibility='@{viewModel.homeListViewStatus ? View.VISIBLE : View.GONE}'
+                android:visibility='@{viewModel.homeList == null ? View.VISIBLE : View.GONE}'
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
