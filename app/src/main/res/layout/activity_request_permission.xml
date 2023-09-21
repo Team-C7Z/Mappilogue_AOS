@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="activity"
+            type="com.c7z.mappilogue_aos.presentation.ui.permission.RequestPermissionActivity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray_1">
+
+        <TextView
+            android:id="@+id/request_permission_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/request_permission_title"
+            android:layout_marginTop="105dp"
+            android:layout_marginStart="16dp"
+            android:textColor="@color/black"
+            android:textAppearance="@style/Title_01"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/request_permission_iv_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_request_permission_alarm"
+            android:layout_marginTop="53dp"
+            app:layout_constraintStart_toStartOf="@id/request_permission_tv_title"
+            app:layout_constraintTop_toBottomOf="@id/request_permission_tv_title" />
+
+        <TextView
+            android:id="@+id/request_permission_tv_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/request_permission_alarm_title"
+            android:textColor="@color/black"
+            android:textAppearance="@style/Title_02"
+            android:layout_marginStart="16dp"
+            app:layout_constraintTop_toTopOf="@id/request_permission_iv_alarm"
+            app:layout_constraintStart_toEndOf="@id/request_permission_iv_alarm" />
+
+        <TextView
+            android:id="@+id/request_permission_tv_alarm_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/request_permission_alarm_content"
+            android:textColor="@color/gray_4"
+            android:textAppearance="@style/Body_02"
+            app:layout_constraintTop_toBottomOf="@id/request_permission_tv_alarm"
+            app:layout_constraintStart_toStartOf="@id/request_permission_tv_alarm" />
+
+        <ImageView
+            android:id="@+id/request_permission_iv_gallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_request_permission_gallery"
+            android:layout_marginTop="30dp"
+            app:layout_constraintStart_toStartOf="@id/request_permission_iv_alarm"
+            app:layout_constraintTop_toBottomOf="@id/request_permission_tv_alarm_content" />
+
+        <TextView
+            android:id="@+id/request_permission_tv_gallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/request_permission_photo_title"
+            android:textColor="@color/black"
+            android:textAppearance="@style/Title_02"
+            android:layout_marginStart="16dp"
+            app:layout_constraintTop_toTopOf="@id/request_permission_iv_gallery"
+            app:layout_constraintStart_toEndOf="@id/request_permission_iv_gallery" />
+
+        <TextView
+            android:id="@+id/request_permission_tv_gallery_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/request_permission_photo_content"
+            android:textColor="@color/gray_4"
+            android:textAppearance="@style/Body_02"
+            app:layout_constraintTop_toBottomOf="@id/request_permission_tv_gallery"
+            app:layout_constraintStart_toStartOf="@id/request_permission_tv_gallery" />
+
+        <ImageView
+            android:id="@+id/request_permission_iv_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_request_permission_camera"
+            android:layout_marginTop="30dp"
+            app:layout_constraintStart_toStartOf="@id/request_permission_iv_gallery"
+            app:layout_constraintTop_toBottomOf="@id/request_permission_tv_gallery_content" />
+
+        <TextView
+            android:id="@+id/request_permission_tv_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/request_permission_camera_title"
+            android:textColor="@color/black"
+            android:textAppearance="@style/Title_02"
+            android:layout_marginStart="16dp"
+            app:layout_constraintTop_toTopOf="@id/request_permission_iv_camera"
+            app:layout_constraintStart_toEndOf="@id/request_permission_iv_camera" />
+
+        <TextView
+            android:id="@+id/request_permission_tv_camera_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/request_permission_photo_content"
+            android:textColor="@color/gray_4"
+            android:textAppearance="@style/Body_02"
+            app:layout_constraintTop_toBottomOf="@id/request_permission_tv_camera"
+            app:layout_constraintStart_toStartOf="@id/request_permission_tv_camera" />
+
+        <ImageView
+            android:id="@+id/request_permission_iv_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_request_permission_location"
+            android:layout_marginTop="30dp"
+            app:layout_constraintStart_toStartOf="@id/request_permission_iv_camera"
+            app:layout_constraintTop_toBottomOf="@id/request_permission_tv_camera_content" />
+
+        <TextView
+            android:id="@+id/request_permission_tv_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/request_permission_location_title"
+            android:textColor="@color/black"
+            android:textAppearance="@style/Title_02"
+            android:layout_marginStart="16dp"
+            app:layout_constraintTop_toTopOf="@id/request_permission_iv_location"
+            app:layout_constraintStart_toEndOf="@id/request_permission_iv_location" />
+
+        <TextView
+            android:id="@+id/request_permission_tv_location_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/request_permission_location_content"
+            android:textColor="@color/gray_4"
+            android:textAppearance="@style/Body_02"
+            app:layout_constraintTop_toBottomOf="@id/request_permission_tv_location"
+            app:layout_constraintStart_toStartOf="@id/request_permission_tv_location" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/request_permission_btn_request"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:onClick="@{() -> activity.requestPermission()}"
+            android:background="@drawable/selector_onboarding_btn_start"
+            android:enabled="true"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/request_permission_grant_and_start"
+                android:textColor="@color/white"
+                android:textAppearance="@style/Subtitle_01"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -27,6 +27,22 @@
 
     <string name="calendar_current_year_month">%d년 %d월</string>
 
+    <!-- 권한 요청하기 -->
+    <string name="request_permission_title">앱 서비스 접근 권한을\n허용해 주세요</string>
+    <string name="request_permission_alarm_title">알림</string>
+    <string name="request_permission_alarm_content">미리 알림 및 공지사항의 푸시 알림</string>
+    <string name="request_permission_photo_title">사진</string>
+    <string name="request_permission_photo_content">기록 작성 시 업로드할 사진 접근</string>
+    <string name="request_permission_camera_title">카메라</string>
+    <string name="request_permission_camera_content">촬영 후 사진 업로드</string>
+    <string name="request_permission_location_title">위치</string>
+    <string name="request_permission_location_content">현재 위치에서 기록 검색</string>
+    <string name="request_permission_grant_and_start">허용하고 시작하기</string>
+
+    <!-- 회원가입 결과 -->
+    <string name="sign_up_result_title">회원가입이 완료되었어요</string>
+    <string name="sign_up_result_subtitle">3초 뒤에 홈으로 이동할게요</string>
+
     <!-- 일정 추가하기 -->
     <string name="add_todo_title_hint">일정 제목을 적어 주세요</string>
     <string name="add_todo_color">색상</string>
