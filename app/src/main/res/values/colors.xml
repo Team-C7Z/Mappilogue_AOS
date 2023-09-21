@@ -14,8 +14,21 @@
     <color name="gray_4">#9B9791</color>
     <color name="gray_3">#C9C6C2</color>
     <color name="gray_2">#EAE6E1</color>
-    <color name="gary_1.5">#F5F3F0</color>
+    <color name="gray_1.5">#F5F3F0</color>
     <color name="gray_1">#F9F8F7</color>
+
+    <color name="red">#FFA1A1</color>
+    <color name="orange">#FFAF82</color>
+    <color name="yellow">#F5DC82</color>
+    <color name="lime">#F0F1B0</color>
+    <color name="grass">#CAEDA8</color>
+    <color name="green">#B1E9BE</color>
+    <color name="mint">#B2EAD6</color>
+    <color name="skyblue">#B2EBE7</color>
+    <color name="blue">#ABD9F3</color>
+    <color name="marine">#BAD7FA</color>
+    <color name="purple">#E6C3F2</color>
+    <color name="pink">#F0B4D5</color>
 
     <color name="green_1">#2EBD3D</color>
     <color name="green_2">#379240</color>
