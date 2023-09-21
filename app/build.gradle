@@ -6,16 +6,23 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
 android {
     namespace 'com.c7z.mappilogue_aos'
     compileSdk 33
 
     defaultConfig {
         applicationId "com.c7z.mappilogue_aos"
-        minSdk 24
+        minSdk 26
         targetSdk 33
         versionCode 1
         versionName "1.0"
+
+        buildConfigField "String", "DEV_BASE_URL", properties['DEV_BASE_URL']
+        buildConfigField "String", "KAKAO_BASE_URL", properties['KAKAO_BASE_URL']
+        buildConfigField "String", "KAKAO_REST_KEY", properties['KAKAO_REST_KEY']
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -43,7 +50,7 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -79,4 +86,14 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.2.0"))
     implementation 'com.google.firebase:firebase-analytics-ktx:21.3.0'
     implementation 'com.google.firebase:firebase-messaging-ktx:23.2.0'
+
+    /** Kakao Sign In **/
+    implementation "com.kakao.sdk:v2-user:2.14.0"
+
+    /** CalendarView */
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.3'
+    implementation 'com.kizitonwose.calendar:view:2.3.0'
+
+    /** Paging3 **/
+    implementation "androidx.paging:paging-runtime-ktx:3.1.1"
 }

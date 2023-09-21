@@ -4,6 +4,10 @@
     <string name="title_sign_in">맵필로그, 기억의 시작</string>
 
     <string name="common_start">시작하기</string>
+    <string name="common_start_time">시작</string>
+    <string name="common_end_time">종료</string>
+    <string name="common_okay">확인</string>
+    <string name="common_cancel">취소</string>
 
     <!-- 바텀 네비 -->
     <string name="navi_home">홈</string>
@@ -20,4 +24,20 @@
     <string name="home_add_schedule">아래 버튼을 눌러 일정을 추가해 보세요!</string>
     <string name="add_schedule_btn">일정 추가하기</string>
     <string name="marked">마크한 기록</string>
+
+    <string name="calendar_current_year_month">%d년 %d월</string>
+
+    <!-- 일정 추가하기 -->
+    <string name="add_todo_title_hint">일정 제목을 적어 주세요</string>
+    <string name="add_todo_color">색상</string>
+    <string name="add_todo_add_location">장소 추가하기</string>
+    <string name="add_todo_alarm">알림</string>
+    <string name="add_todo_repeat">반복</string>
+    <string name="add_todo_delete_location">삭제하기</string>
+    <string name="add_todo_check_delete_location">선택삭제</string>
+    <string name="add_todo_check_cancel_location">선택취소</string>
+
+    <string name="add_todo_search_location_search">장소 검색</string>
+
+    <string name="add_todo_set_time_remove_time">시간삭제</string>
 </resources>
