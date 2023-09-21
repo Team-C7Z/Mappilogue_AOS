@@ -14,7 +14,7 @@
             android:id="@+id/item_marked_main_container_cl"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/gray_1.5" >
+            android:background="@color/gray_1_5" >
 
             <ImageView
                 android:id="@+id/item_marked_background_iv"
@@ -95,7 +95,7 @@
             android:id="@+id/item_marked_add_main_container_cl"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/gray_1.5"
+            android:background="@color/gray_1_5"
             android:visibility="gone" >
 
             <ImageButton

@@ -9,11 +9,11 @@
 
         <variable
             name="fragment"
-            type="com.c7z.mappilogue_aos.presentation.ui.home.upcoming.UpcomingFragment" />
+            type="com.c7z.mappilogue_aos.presentation.ui.main.home.upcoming.UpcomingFragment" />
 
         <variable
             name="viewModel"
-            type="com.c7z.mappilogue_aos.presentation.ui.home.upcoming.viewmodel.UpComingViewModel" />
+            type="com.c7z.mappilogue_aos.presentation.ui.main.home.upcoming.viewmodel.UpComingViewModel" />
     </data>
 
     <ScrollView
@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"
-        tools:context=".presentation.ui.home.upcoming.UpcomingFragment" >
+        tools:context=".presentation.ui.main.home.upcoming.UpcomingFragment" >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/upcoming_main_container_cl"
@@ -50,7 +50,7 @@
                 android:layout_height="130dp"
                 android:layout_margin="16dp"
                 android:background="@drawable/bg_rec_radius_12"
-                android:backgroundTint="@color/gray_1.5"
+                android:backgroundTint="@color/gray_1_5"
                 android:visibility='@{viewModel.upcomingList == null ? View.VISIBLE : View.GONE}'
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

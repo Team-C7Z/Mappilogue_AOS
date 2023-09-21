@@ -1,4 +1,4 @@
-package com.c7z.mappilogue_aos.presentation.ui.home.upcoming.adapter
+package com.c7z.mappilogue_aos.presentation.ui.main.home.upcoming.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -30,7 +30,7 @@ class UpcomingRecyclerViewAdapter(private val homeUpcomingItem: ArrayList<HomeUp
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: UpcomingRecyclerViewAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(homeUpcomingItem!![position])
     }
 

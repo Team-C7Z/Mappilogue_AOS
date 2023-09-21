@@ -1,4 +1,4 @@
-package com.c7z.mappilogue_aos.presentation.ui.home.today.adapter
+package com.c7z.mappilogue_aos.presentation.ui.main.home.today.adapter
 
 import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
@@ -43,7 +43,7 @@ class TodayRecyclerViewAdapter(private val homeTodayItem: ArrayList<HomeTodayIte
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: TodayRecyclerViewAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(homeTodayItem!![position])
     }
 

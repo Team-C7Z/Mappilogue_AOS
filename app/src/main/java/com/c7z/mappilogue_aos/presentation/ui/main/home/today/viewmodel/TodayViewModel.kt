@@ -1,4 +1,4 @@
-package com.c7z.mappilogue_aos.presentation.ui.home.today.viewmodel
+package com.c7z.mappilogue_aos.presentation.ui.main.home.today.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

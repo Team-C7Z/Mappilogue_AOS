@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:translationZ="1dp"
-    android:background="@color/gary_1.5">
+    android:background="@color/gray_1_5">
 
     <NumberPicker
         android:id="@+id/item_write_todo_picker_year"

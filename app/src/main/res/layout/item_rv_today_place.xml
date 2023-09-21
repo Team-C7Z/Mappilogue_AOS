@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/bg_rec_radius_12"
-            android:backgroundTint="@color/gray_1.5"
+            android:backgroundTint="@color/gray_1_5"
             android:padding="12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" >

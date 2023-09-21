@@ -1,4 +1,4 @@
-package com.c7z.mappilogue_aos.presentation.ui.home.today.adapter
+package com.c7z.mappilogue_aos.presentation.ui.main.home.today.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -21,7 +21,7 @@ class TodayPlaceRecyclerViewAdapter(private val homeTodayPlaceItem: List<HomeTod
         return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: TodayPlaceRecyclerViewAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(homeTodayPlaceItem[position])
     }
 

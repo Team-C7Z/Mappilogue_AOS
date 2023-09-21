@@ -8,8 +8,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.c7z.mappilogue_aos.R
 import com.c7z.mappilogue_aos.databinding.FragmentHomeBinding
-import com.c7z.mappilogue_aos.presentation.ui.home.today.TodayFragment
-import com.c7z.mappilogue_aos.presentation.ui.home.upcoming.UpcomingFragment
+import com.c7z.mappilogue_aos.presentation.ui.main.home.today.TodayFragment
+import com.c7z.mappilogue_aos.presentation.ui.main.home.upcoming.UpcomingFragment
 import com.google.android.material.tabs.TabLayout
 
 class HomeFragment : Fragment() {

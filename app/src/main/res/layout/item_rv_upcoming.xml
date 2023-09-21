@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:paddingVertical="16dp"
             android:paddingHorizontal="14dp"
-            android:background="@color/gray_1.5" >
+            android:background="@color/gray_1_5" >
 
             <TextView
                 android:id="@+id/item_upcoming_date_tv"
