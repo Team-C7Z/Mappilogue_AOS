@@ -1,4 +1,4 @@
-package com.c7z.mappilogue_aos.presentation.ui.memorize
+package com.c7z.mappilogue_aos.presentation.ui.main.memorize
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.c7z.mappilogue_aos.R
-import com.c7z.mappilogue_aos.presentation.ui.memorize.viewmodel.MemorizeViewModel
+import com.c7z.mappilogue_aos.presentation.ui.main.memorize.viewmodel.MemorizeViewModel
 
 class MemorizeFragment : Fragment() {
 

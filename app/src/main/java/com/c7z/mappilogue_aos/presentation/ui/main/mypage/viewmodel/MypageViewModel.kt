@@ -1,4 +1,4 @@
-package com.c7z.mappilogue_aos.presentation.ui.mypage.viewmodel
+package com.c7z.mappilogue_aos.presentation.ui.main.mypage.viewmodel
 
 import androidx.lifecycle.ViewModel
 

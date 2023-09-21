@@ -13,12 +13,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.c7z.mappilogue_aos.R
 import com.c7z.mappilogue_aos.databinding.ActivityMainBinding
+import com.c7z.mappilogue_aos.presentation.ui.home.HomeFragment
 import com.c7z.mappilogue_aos.presentation.ui.main.home.HomeFragment
 import com.c7z.mappilogue_aos.presentation.ui.main.calendar.CalendarFragment
 import com.c7z.mappilogue_aos.presentation.ui.main.viewmodel.MainViewModel
-import com.c7z.mappilogue_aos.presentation.ui.meet.MeetFragment
-import com.c7z.mappilogue_aos.presentation.ui.memorize.MemorizeFragment
-import com.c7z.mappilogue_aos.presentation.ui.mypage.MypageFragment
+import com.c7z.mappilogue_aos.presentation.ui.main.meet.MeetFragment
+import com.c7z.mappilogue_aos.presentation.ui.main.memorize.MemorizeFragment
+import com.c7z.mappilogue_aos.presentation.ui.main.mypage.MypageFragment
 import com.c7z.mappilogue_aos.presentation.ui.todo.TodoActivity
 
 class MainActivity : AppCompatActivity() {
@@ -51,7 +52,7 @@ class MainActivity : AppCompatActivity() {
                     R.id.main_bottom_calender -> changeFragment(CalendarFragment(), false, true, "캘린더")
                     R.id.main_bottom_meet -> changeFragment(MeetFragment(), false, false, "")
                     R.id.main_bottom_memorize -> changeFragment(MemorizeFragment(), false, true, "기록")
-                    R.id.main_bottom_mypage -> changeFragment(MypageFragment(), false, true, "마이페이지")
+                    R.id.main_bottom_mypage -> changeFragment(MypageFragment(), false, true, "MY")
                 }
                 return@setOnItemSelectedListener true
             }
