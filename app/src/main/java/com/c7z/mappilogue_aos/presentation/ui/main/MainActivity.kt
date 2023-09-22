@@ -3,25 +3,26 @@ package com.c7z.mappilogue_aos.presentation.ui.main
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.c7z.mappilogue_aos.R
 import com.c7z.mappilogue_aos.databinding.ActivityMainBinding
-import com.c7z.mappilogue_aos.presentation.ui.home.HomeFragment
-import com.c7z.mappilogue_aos.presentation.ui.main.home.HomeFragment
 import com.c7z.mappilogue_aos.presentation.ui.main.calendar.CalendarFragment
-import com.c7z.mappilogue_aos.presentation.ui.main.viewmodel.MainViewModel
+import com.c7z.mappilogue_aos.presentation.ui.main.home.HomeFragment
 import com.c7z.mappilogue_aos.presentation.ui.main.meet.MeetFragment
 import com.c7z.mappilogue_aos.presentation.ui.main.memorize.MemorizeFragment
 import com.c7z.mappilogue_aos.presentation.ui.main.mypage.MypageFragment
+import com.c7z.mappilogue_aos.presentation.ui.main.viewmodel.MainViewModel
 import com.c7z.mappilogue_aos.presentation.ui.todo.TodoActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val viewModel : MainViewModel by viewModels()

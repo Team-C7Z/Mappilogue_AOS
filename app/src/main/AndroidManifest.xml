@@ -64,6 +64,10 @@
             android:name=".presentation.ui.todo.TodoActivity"
             android:exported="false" />
 
+        <!-- Change Profile -->
+        <activity android:name=".presentation.ui.change_profile.ChangeProfileActivity"
+            android:exported="false" />
+
         <!-- FCM -->
         <service
             android:name=".data.remote.service.MyFirebaseMessagingService"

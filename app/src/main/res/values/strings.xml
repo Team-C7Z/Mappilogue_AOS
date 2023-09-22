@@ -8,6 +8,7 @@
     <string name="common_end_time">종료</string>
     <string name="common_okay">확인</string>
     <string name="common_cancel">취소</string>
+    <string name="common_nickname">닉네임</string>
 
     <!-- 바텀 네비 -->
     <string name="navi_home">홈</string>
@@ -56,4 +57,15 @@
     <string name="add_todo_search_location_search">장소 검색</string>
 
     <string name="add_todo_set_time_remove_time">시간삭제</string>
+
+    <!-- MY -->
+    <string name="my_user_nickname">%s 님</string>
+    <string name="my_version_info_title">버전정보</string>
+    <string name="my_version_info_version">%s / %s</string>
+
+    <!-- 프로필 편집 -->
+    <string name="change_profile_toolbar_title">프로필 편집</string>
+    <string name="change_profile_change_photo">사진 편집</string>
+    <string name="change_profile_login_account">로그인 계정</string>
+
 </resources>

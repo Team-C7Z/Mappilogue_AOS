@@ -1,20 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/gray_1"
-    tools:context=".presentation.ui.main.mypage.MypageFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:text="Mypage" />
+    <data>
+        <variable
+            name="fragment"
+            type="com.c7z.mappilogue_aos.presentation.ui.main.mypage.MypageFragment" />
+        <variable
+            name="viewModel"
+            type="com.c7z.mappilogue_aos.presentation.ui.main.mypage.viewmodel.MypageViewModel" />
+    </data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray_1"
+        tools:context=".presentation.ui.main.mypage.MypageFragment">
+
+        <ImageView
+            android:id="@+id/fg_my_iv_user_profile"
+            common_circle_image="@{viewModel.userProfileData.profileImageUrl}"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/fg_my_tv_user_nickname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{@string/my_user_nickname(viewModel.userProfileData.nickname)}"
+            android:textAppearance="@style/Title_02"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="@id/fg_my_iv_user_profile"
+            app:layout_constraintBottom_toTopOf="@id/fg_my_tv_user_email"
+            app:layout_constraintStart_toEndOf="@id/fg_my_iv_user_profile"
+            app:layout_constraintEnd_toStartOf="@id/fg_my_btn_user_profile_change"/>
+
+        <TextView
+            android:id="@+id/fg_my_tv_user_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.userProfileData.email}"
+            android:textAppearance="@style/Caption_01"
+            android:textColor="@color/gray_5"
+            app:layout_constraintTop_toBottomOf="@id/fg_my_tv_user_nickname"
+            app:layout_constraintStart_toStartOf="@id/fg_my_tv_user_nickname"
+            app:layout_constraintEnd_toStartOf="@id/fg_my_btn_user_profile_change"
+            app:layout_constraintBottom_toBottomOf="@id/fg_my_iv_user_profile"/>
+
+        <ImageView
+            android:id="@+id/fg_my_btn_user_profile_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_chevron_right_user_profile"
+            android:onClick="@{() -> fragment.openChangeProfile()}"
+            app:layout_constraintTop_toTopOf="@id/fg_my_iv_user_profile"
+            app:layout_constraintBottom_toBottomOf="@id/fg_my_iv_user_profile"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fg_my_layout_version_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_gray15_12"
+            android:layout_margin="16dp"
+            app:layout_constraintTop_toBottomOf="@id/fg_my_iv_user_profile"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" >
+
+            <TextView
+                android:id="@+id/fg_my_tv_version_info_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/my_version_info_title"
+                android:textAppearance="@style/Body_02"
+                android:textColor="@color/black"
+                android:layout_marginStart="12dp"
+                android:layout_marginVertical="13dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_chevron_right_user_profile"
+                app:tint="@color/gray_3"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
