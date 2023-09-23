@@ -46,6 +46,9 @@
             android:name=".presentation.ui.signin.SignInActivity"
             android:exported="false" />
 
+        <activity android:name=".presentation.ui.sign_up_result.SignUpResultActivity"
+            android:exported="false" />
+
         <!-- KAKAO SIGN IN -->
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
@@ -66,6 +69,10 @@
 
         <!-- Change Profile -->
         <activity android:name=".presentation.ui.change_profile.ChangeProfileActivity"
+            android:exported="false" />
+
+        <!-- Sign Out Reason -->
+        <activity android:name=".presentation.ui.sign_out_reason.SignOutReasonActivity"
             android:exported="false" />
 
         <!-- FCM -->

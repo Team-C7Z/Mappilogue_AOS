@@ -1,6 +1,7 @@
 package com.c7z.mappilogue_aos.data.remote.service
 
 import com.c7z.mappilogue_aos.data.remote.request.RequestModifyUserNickname
+import com.c7z.mappilogue_aos.data.remote.request.RequestSignOut
 import com.c7z.mappilogue_aos.data.remote.response.ResponseUserProfileData
 import com.c7z.mappilogue_aos.presentation.util.BaseResponse
 import retrofit2.Response
@@ -20,4 +21,9 @@ interface UserService {
 
     @POST("/api/v1/users/logout")
     suspend fun requestLogOut() : Response<BaseResponse>
+
+    @POST("/api/v1/users/withdrawal")
+    suspend fun requestSignOut(
+        @Body body : RequestSignOut
+    ) : Response<BaseResponse>
 }

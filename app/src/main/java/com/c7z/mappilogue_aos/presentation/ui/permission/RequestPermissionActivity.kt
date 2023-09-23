@@ -22,14 +22,19 @@ class RequestPermissionActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_request_permission)
 
         initBinding()
+
+        requestPermission()
     }
 
     private fun initBinding() {
         binding.activity = this
     }
 
-    fun requestPermission() {
+    private fun requestPermission() {
         requestPermissions(arrayOf(requestNotificationPermission(), requestGalleryPermission(), requestCameraPermission(), requestCoarseLocationPermission(), requestFineLocationPermission()), REQUEST_PERMISSION_CODE)
+    }
+
+    fun onNextClicked() {
         startActivity(Intent(this, OnBoardingActivity::class.java)).also { finish() }
     }
 

@@ -8,4 +8,8 @@ class SharedPreferenceLocalSource : SharedPreferenceSource {
         mSharedPreferences.edit().putString("jwt", access).putString("refresh", refresh).apply()
     }
 
+    override suspend fun deleteUserData() {
+        mSharedPreferences.edit().clear().apply()
+    }
+
 }

@@ -18,4 +18,8 @@ class SignInRepositoryImpl @Inject constructor(
     override suspend fun saveSignInData(access: String, refresh: String) {
         localSource.saveSignInData(access, refresh)
     }
+
+    override suspend fun deleteUserData() {
+        localSource.deleteUserData()
+    }
 }

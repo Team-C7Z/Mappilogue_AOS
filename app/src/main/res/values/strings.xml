@@ -69,4 +69,11 @@
     <string name="change_profile_change_photo">사진 편집</string>
     <string name="change_profile_login_account">로그인 계정</string>
 
+    <!-- 탈퇴하기 -->
+    <string name="sign_out_toolbar_title">탈퇴하기</string>
+    <string name="sign_out_toolbar_skip">건너뛰기</string>
+    <string name="sign_out_title">탈퇴하는 이유가 있나요?</string>
+    <string name="sign_out_subtitle">더 좋은 서비스를 만드는 데에 참고할게요</string>
+    <string name="sign_out_complete">제출하기</string>
+
 </resources>

@@ -1,5 +1,6 @@
 package com.c7z.mappilogue_aos.presentation.ui.main.mypage
 
+import android.app.Activity
 import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -8,14 +9,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.c7z.mappilogue_aos.R
 import com.c7z.mappilogue_aos.databinding.FragmentMypageBinding
 import com.c7z.mappilogue_aos.presentation.ui.change_profile.ChangeProfileActivity
+import com.c7z.mappilogue_aos.presentation.ui.component.dialog.ComponentDialogCheckBox
+import com.c7z.mappilogue_aos.presentation.ui.component.dialog.ComponentDialogOneButton
 import com.c7z.mappilogue_aos.presentation.ui.component.dialog.ComponentDialogTwoButton
 import com.c7z.mappilogue_aos.presentation.ui.main.mypage.adapter.MyPageMenuAdapter
 import com.c7z.mappilogue_aos.presentation.ui.main.mypage.viewmodel.MypageViewModel
+import com.c7z.mappilogue_aos.presentation.ui.sign_out_reason.SignOutReasonActivity
 import com.c7z.mappilogue_aos.presentation.ui.signin.SignInActivity
 import com.c7z.mappilogue_aos.presentation.util.ItemDecorator
 import com.kakao.sdk.user.UserApiClient
@@ -70,7 +75,7 @@ class MypageFragment : Fragment() {
     }
 
     fun openChangeProfile() {
-        startActivity(Intent(requireActivity(), ChangeProfileActivity::class.java))
+        requestProfileChangeActivity.launch(Intent(requireActivity(), ChangeProfileActivity::class.java))
     }
 
     private fun onUpperMenuClicked(position : Int) {
@@ -95,18 +100,46 @@ class MypageFragment : Fragment() {
     private fun observeLogOut() {
         viewModel.logOutStatus.observe(viewLifecycleOwner) {
             if(it == 200) {
-                socialLogOut()
+                socialLogOut().also { viewModel.removeUserDataAtLocal() }
                 startActivity(Intent(requireActivity(), SignInActivity::class.java)).also { requireActivity().finish() }
             }
         }
     }
 
     private fun onSignOutClicked() {
+        ComponentDialogCheckBox(::openSignOutReasonActivity, "RED").show(requireActivity().supportFragmentManager, "SIGN_OUT")
+    }
 
+    private fun openSignOutReasonActivity() {
+        requestSignOutReasonActivity.launch(Intent(requireActivity(), SignOutReasonActivity::class.java))
     }
 
     private fun socialLogOut() {
-        UserApiClient.instance.logout {  }
+        UserApiClient.instance.logout {}
     }
 
+    private fun showSignOutSuccessDialog() {
+        ComponentDialogOneButton(::moveToSignIn).show(requireActivity().supportFragmentManager, "SUCCESS_SIGN_OUT")
+    }
+
+    private fun moveToSignIn() {
+        startActivity(Intent(requireActivity(), SignInActivity::class.java)).also { requireActivity().finish() }
+    }
+
+    private val requestProfileChangeActivity =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                viewModel.requestUserProfile()
+            }
+        }
+
+    private val requestSignOutReasonActivity =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == Activity.RESULT_OK) {
+                val state = it.data!!.extras?.getBoolean("state")
+                if(state == true) {
+                    showSignOutSuccessDialog()
+                }
+            }
+        }
 }

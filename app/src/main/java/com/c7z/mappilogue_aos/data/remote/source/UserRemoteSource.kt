@@ -1,6 +1,7 @@
 package com.c7z.mappilogue_aos.data.remote.source
 
 import com.c7z.mappilogue_aos.data.remote.request.RequestModifyUserNickname
+import com.c7z.mappilogue_aos.data.remote.request.RequestSignOut
 import com.c7z.mappilogue_aos.data.remote.response.ResponseUserProfileData
 import com.c7z.mappilogue_aos.data.remote.service.UserService
 import com.c7z.mappilogue_aos.domain.source.UserSource
@@ -26,6 +27,14 @@ class UserRemoteSource @Inject constructor(private val service : UserService): U
 
     override suspend fun requestLogOut(): Result<Int> {
         val res = service.requestLogOut()
+        return when(res.code()) {
+            in 200..399 -> Result.success(res.code())
+            else -> Result.failure(IllegalArgumentException(res.errorBody()?.convertAndGetCode().toString()))
+        }
+    }
+
+    override suspend fun requestSignOut(body: RequestSignOut): Result<Int> {
+        val res = service.requestSignOut(body)
         return when(res.code()) {
             in 200..399 -> Result.success(res.code())
             else -> Result.failure(IllegalArgumentException(res.errorBody()?.convertAndGetCode().toString()))

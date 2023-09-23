@@ -49,4 +49,8 @@ class ChangeProfileActivity : AppCompatActivity() {
             }
         }
     }
+
+    fun finishActivity() {
+        finish()
+    }
 }

@@ -8,4 +8,6 @@ interface SignInRepository {
     suspend fun requestSignIn(body : RequestSignIn) : Result<ResponseSignIn.ResultSignIn>
 
     suspend fun saveSignInData(access : String, refresh : String)
+
+    suspend fun deleteUserData()
 }

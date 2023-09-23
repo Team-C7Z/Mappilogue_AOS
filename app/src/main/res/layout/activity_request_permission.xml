@@ -149,7 +149,7 @@
             android:id="@+id/request_permission_btn_request"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:onClick="@{() -> activity.requestPermission()}"
+            android:onClick="@{() -> activity.onNextClicked()}"
             android:background="@drawable/selector_onboarding_btn_start"
             android:enabled="true"
             app:layout_constraintBottom_toBottomOf="parent">
