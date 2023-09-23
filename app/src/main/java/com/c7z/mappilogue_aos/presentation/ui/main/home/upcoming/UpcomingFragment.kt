@@ -18,6 +18,7 @@ import com.c7z.mappilogue_aos.presentation.ui.main.home.upcoming.adapter.Upcomin
 import com.c7z.mappilogue_aos.presentation.ui.main.home.upcoming.adapter.UpcomingRecyclerViewAdapter
 import com.c7z.mappilogue_aos.presentation.ui.main.home.upcoming.viewmodel.UpComingViewModel
 import com.c7z.mappilogue_aos.presentation.util.DpToPxConverter
+import com.c7z.mappilogue_aos.presentation.util.ItemDecorator
 
 class UpcomingFragment: Fragment() {
     private lateinit var binding: FragmentUpcomingBinding
@@ -70,30 +71,12 @@ class UpcomingFragment: Fragment() {
     private fun initUpcomingRv() {
         binding.upcomingRv.setHasFixedSize(true)
         binding.upcomingRv.adapter = todayAdapter
-        binding.upcomingRv.addItemDecoration(VerticalItemDecorator(DpToPxConverter.dpToPx(16f, requireContext())))
+        binding.upcomingRv.addItemDecoration(ItemDecorator.VerticalItemDecorator(DpToPxConverter.dpToPx(16f, requireContext())))
     }
 
     private fun initUpcomingMarkedRv() {
         binding.upcomingMarkedRv.setHasFixedSize(true)
         binding.upcomingMarkedRv.adapter = todayMarkedAdapter
-        binding.upcomingMarkedRv.addItemDecoration(HorizontalItemDecorator(DpToPxConverter.dpToPx(14f, requireContext())))
-    }
-
-    inner class VerticalItemDecorator(private var spacing: Int): RecyclerView.ItemDecoration() {
-        override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
-            super.getItemOffsets(outRect, view, parent, state)
-            if (parent.getChildAdapterPosition(view) != 0) outRect.top = spacing
-        }
-    }
-
-    inner class HorizontalItemDecorator(private var spacing: Int): RecyclerView.ItemDecoration() {
-        override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
-            super.getItemOffsets(outRect, view, parent, state)
-            if (parent.getChildAdapterPosition(view) != 0) outRect.left = spacing
-        }
-    }
-
-    private fun dpToPx(dp: Float, context: Context): Int {
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, context.resources.displayMetrics).toInt()
+        binding.upcomingMarkedRv.addItemDecoration(ItemDecorator.HorizontalItemDecorator(DpToPxConverter.dpToPx(14f, requireContext())))
     }
 }

@@ -23,4 +23,12 @@ class UserRemoteSource @Inject constructor(private val service : UserService): U
             else -> Result.failure(IllegalArgumentException(res.errorBody()?.convertAndGetCode().toString()))
         }
     }
+
+    override suspend fun requestLogOut(): Result<Int> {
+        val res = service.requestLogOut()
+        return when(res.code()) {
+            in 200..399 -> Result.success(res.code())
+            else -> Result.failure(IllegalArgumentException(res.errorBody()?.convertAndGetCode().toString()))
+        }
+    }
 }

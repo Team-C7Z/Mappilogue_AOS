@@ -29,7 +29,6 @@ class ComponentDialogTwoButton (
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.component_dialog_2_button, container, false)
-        Log.e("----", "onCreateView: CREATE", )
         initBinding()
         initUi()
         return binding.root
@@ -48,6 +47,7 @@ class ComponentDialogTwoButton (
     private fun initText() {
         when(tag) {
             "STOP_WRITING_TODO" -> case_STOP_WRITING_TODO()
+            "LOG_OUT" -> case_LOG_OUT()
         }
     }
 
@@ -62,7 +62,8 @@ class ComponentDialogTwoButton (
     private fun initSecondClick() {
         binding.componentDialog2ButtonTvSecondBtn.setOnClickListener {
             onSecondBtnClicked.invoke()
-            onDismiss() }
+            onDismiss()
+        }
     }
 
     private fun case_STOP_WRITING_TODO() {
@@ -70,6 +71,12 @@ class ComponentDialogTwoButton (
         binding.componentDialog2ButtonTvContent.text = "저장하지 않은 일정은 사라져요"
         binding.componentDialog2ButtonTvFirstBtn.text = "취소"
         binding.componentDialog2ButtonTvSecondBtn.text = "나가기"
+    }
+
+    private fun case_LOG_OUT() {
+        binding.componentDialog2ButtonTvTitle.text = "로그아웃 할까요?"
+        binding.componentDialog2ButtonTvFirstBtn.text = "취소"
+        binding.componentDialog2ButtonTvSecondBtn.text = "확인"
     }
 
     fun onDismiss() {

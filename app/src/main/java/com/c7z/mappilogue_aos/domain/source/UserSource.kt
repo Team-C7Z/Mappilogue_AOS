@@ -8,4 +8,6 @@ interface UserSource {
     suspend fun requestUserProfileData() : Result<ResponseUserProfileData.ResultUserProfileData>
 
     suspend fun requestModifyUserNickname(body : RequestModifyUserNickname) : Result<Int>
+
+    suspend fun requestLogOut() : Result<Int>
 }

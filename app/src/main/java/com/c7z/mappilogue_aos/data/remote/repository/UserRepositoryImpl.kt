@@ -14,4 +14,8 @@ class UserRepositoryImpl @Inject constructor(private val source : UserSource): U
     override suspend fun requestModifyUserNickname(body: RequestModifyUserNickname): Result<Int> {
         return source.requestModifyUserNickname(body)
     }
+
+    override suspend fun requestLogOut(): Result<Int> {
+        return source.requestLogOut()
+    }
 }

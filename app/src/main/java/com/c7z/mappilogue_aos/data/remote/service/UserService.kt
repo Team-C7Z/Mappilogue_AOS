@@ -7,6 +7,7 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.PATCH
+import retrofit2.http.POST
 
 interface UserService {
     @GET("/api/v1/users/profile")
@@ -16,4 +17,7 @@ interface UserService {
     suspend fun requestModifyUserNickname(
         @Body body : RequestModifyUserNickname
     ) : Response<BaseResponse>
+
+    @POST("/api/v1/users/logout")
+    suspend fun requestLogOut() : Response<BaseResponse>
 }

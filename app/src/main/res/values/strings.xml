@@ -9,6 +9,7 @@
     <string name="common_okay">확인</string>
     <string name="common_cancel">취소</string>
     <string name="common_nickname">닉네임</string>
+    <string name="common_update">업데이트</string>
 
     <!-- 바텀 네비 -->
     <string name="navi_home">홈</string>
