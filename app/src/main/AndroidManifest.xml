@@ -45,6 +45,9 @@
         <activity
             android:name=".presentation.ui.signin.SignInActivity"
             android:exported="false" />
+        <activity
+            android:name=".presentation.ui.sign_up_result.SignUpResultActivity"
+            android:exported="false" />
 
         <activity android:name=".presentation.ui.sign_up_result.SignUpResultActivity"
             android:exported="false" />
