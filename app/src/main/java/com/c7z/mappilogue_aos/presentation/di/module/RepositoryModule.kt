@@ -1,13 +1,7 @@
 package com.c7z.mappilogue_aos.presentation.di.module
 
-import com.c7z.mappilogue_aos.data.remote.repository.KakaoRepositoryImpl
-import com.c7z.mappilogue_aos.data.remote.repository.ScheduleRepositoryImpl
-import com.c7z.mappilogue_aos.data.remote.repository.SignInRepositoryImpl
-import com.c7z.mappilogue_aos.data.remote.repository.UserRepositoryImpl
-import com.c7z.mappilogue_aos.domain.repository.KakaoRepository
-import com.c7z.mappilogue_aos.domain.repository.ScheduleRepository
-import com.c7z.mappilogue_aos.domain.repository.SignInRepository
-import com.c7z.mappilogue_aos.domain.repository.UserRepository
+import com.c7z.mappilogue_aos.data.remote.repository.*
+import com.c7z.mappilogue_aos.domain.repository.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -28,4 +22,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun bindUserRepository(userRepositoryImpl: UserRepositoryImpl) : UserRepository
+
+    @Binds
+    abstract fun bindNotificationRepository(notificationRepositoryImpl: NotificationRepositoryImpl) : NotificationRepository
 }

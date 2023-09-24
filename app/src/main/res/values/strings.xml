@@ -76,4 +76,11 @@
     <string name="sign_out_subtitle">더 좋은 서비스를 만드는 데에 참고할게요</string>
     <string name="sign_out_complete">제출하기</string>
 
+    <!-- 알림 설정 -->
+    <string name="notification_setting_toolbar_title">알림 설정</string>
+    <string name="notification_setting_accept_notification">알림 받기</string>
+    <string name="notification_setting_notice">공지사항 알림</string>
+    <string name="notification_setting_todo">일정 미리 알림</string>
+    <string name="notification_setting_marketing">마케팅 알림</string>
+
 </resources>

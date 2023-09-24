@@ -75,6 +75,10 @@
         <activity android:name=".presentation.ui.sign_out_reason.SignOutReasonActivity"
             android:exported="false" />
 
+        <!-- Notification Setting -->
+        <activity android:name=".presentation.ui.notification_setting.NotificationSettingActivity"
+            android:exported="false" />
+
         <!-- FCM -->
         <service
             android:name=".data.remote.service.MyFirebaseMessagingService"

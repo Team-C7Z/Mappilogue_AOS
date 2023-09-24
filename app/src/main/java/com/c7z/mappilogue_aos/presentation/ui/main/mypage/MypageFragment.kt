@@ -20,6 +20,7 @@ import com.c7z.mappilogue_aos.presentation.ui.component.dialog.ComponentDialogOn
 import com.c7z.mappilogue_aos.presentation.ui.component.dialog.ComponentDialogTwoButton
 import com.c7z.mappilogue_aos.presentation.ui.main.mypage.adapter.MyPageMenuAdapter
 import com.c7z.mappilogue_aos.presentation.ui.main.mypage.viewmodel.MypageViewModel
+import com.c7z.mappilogue_aos.presentation.ui.notification_setting.NotificationSettingActivity
 import com.c7z.mappilogue_aos.presentation.ui.sign_out_reason.SignOutReasonActivity
 import com.c7z.mappilogue_aos.presentation.ui.signin.SignInActivity
 import com.c7z.mappilogue_aos.presentation.util.ItemDecorator
@@ -79,7 +80,9 @@ class MypageFragment : Fragment() {
     }
 
     private fun onUpperMenuClicked(position : Int) {
-
+        when(position) {
+            0 -> startActivity(Intent(requireActivity(), NotificationSettingActivity::class.java))
+        }
     }
 
     private fun onLowerMenuClicked(position : Int) {
