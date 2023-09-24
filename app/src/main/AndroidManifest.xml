@@ -79,6 +79,10 @@
         <activity android:name=".presentation.ui.notification_setting.NotificationSettingActivity"
             android:exported="false" />
 
+        <!-- Inquire -->
+        <activity android:name=".presentation.ui.inquire.InquireActivity"
+            android:exported="false" />
+
         <!-- FCM -->
         <service
             android:name=".data.remote.service.MyFirebaseMessagingService"

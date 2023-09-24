@@ -83,4 +83,12 @@
     <string name="notification_setting_todo">일정 미리 알림</string>
     <string name="notification_setting_marketing">마케팅 알림</string>
 
+    <!-- 문의하기 -->
+    <string name="inquire_toolbar_title">문의하기</string>
+    <string name="inquire_title">여러분의 이야기를 기다려요</string>
+    <string name="inquire_subtitle">맵필로그 팀은 여러분의 질문을 언제든지 기다리고 있어요.\n궁금한 점이나 건의할 점, 사소한 의견이라도 맵필로그 팀에게 전해 주세요.</string>
+    <string name="inquire_email">mappilogue@naver.com</string>
+    <string name="inquire_copy_email">복사하기</string>
+    <string name="inquire_toast_copy_email">이메일이 복사되었어요</string>
+
 </resources>

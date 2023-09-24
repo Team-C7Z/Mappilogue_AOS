@@ -18,6 +18,7 @@ import com.c7z.mappilogue_aos.presentation.ui.change_profile.ChangeProfileActivi
 import com.c7z.mappilogue_aos.presentation.ui.component.dialog.ComponentDialogCheckBox
 import com.c7z.mappilogue_aos.presentation.ui.component.dialog.ComponentDialogOneButton
 import com.c7z.mappilogue_aos.presentation.ui.component.dialog.ComponentDialogTwoButton
+import com.c7z.mappilogue_aos.presentation.ui.inquire.InquireActivity
 import com.c7z.mappilogue_aos.presentation.ui.main.mypage.adapter.MyPageMenuAdapter
 import com.c7z.mappilogue_aos.presentation.ui.main.mypage.viewmodel.MypageViewModel
 import com.c7z.mappilogue_aos.presentation.ui.notification_setting.NotificationSettingActivity
@@ -82,6 +83,7 @@ class MypageFragment : Fragment() {
     private fun onUpperMenuClicked(position : Int) {
         when(position) {
             0 -> startActivity(Intent(requireActivity(), NotificationSettingActivity::class.java))
+            2 -> startActivity(Intent(requireActivity(), InquireActivity::class.java))
         }
     }
 
