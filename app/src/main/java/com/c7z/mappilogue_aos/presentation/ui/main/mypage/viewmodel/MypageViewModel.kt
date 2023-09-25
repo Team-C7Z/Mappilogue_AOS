@@ -32,7 +32,7 @@ class MypageViewModel @Inject constructor(
     fun requestUserProfile() {
         viewModelScope.launch {
             userRepository.requestUserProfileData()
-                .onSuccess { _userProfileData.value = it.setImage() }
+                .onSuccess { _userProfileData.value = it }
         }
     }
 
