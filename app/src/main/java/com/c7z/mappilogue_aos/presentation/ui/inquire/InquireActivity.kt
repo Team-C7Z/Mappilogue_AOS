@@ -28,10 +28,11 @@ class InquireActivity : AppCompatActivity() {
     fun onEmailCopyClicked() {
         val clipBoardManager = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
         clipBoardManager.setPrimaryClip(ClipData.newPlainText("", binding.inquireTvEmail.text))
-        /** Android 13 이상에서 토스트 테스트 필요 **/
-        //if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2) {
+        
+
+        if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2) {
             ComponentAlertToast().show(supportFragmentManager, "COPY_EMAIL")
-        //}
+        }
     }
 
     fun finishActivity() {
