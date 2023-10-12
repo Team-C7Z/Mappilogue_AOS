@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <data>
+        <variable
+            name="activity"
+            type="com.c7z.mappilogue_aos.presentation.ui.notification_setting.NotificationSettingActivity" />
+
+        <variable
+            name="viewModel"
+            type="com.c7z.mappilogue_aos.presentation.ui.notification_setting.viewmodel.NotificationSettingViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray_1">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/notification_setting_layout_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            app:layout_constraintTop_toTopOf="parent" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_left"
+                android:onClick="@{() -> activity.finishActivity()}"
+                android:layout_marginStart="16dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/notification_setting_toolbar_title"
+                android:textAppearance="@style/Title_02"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/notification_setting_tv_accept_notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/notification_setting_accept_notification"
+            android:textAppearance="@style/Body_02"
+            android:textColor="@color/black"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintTop_toBottomOf="@id/notification_setting_layout_toolbar"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <CheckBox
+            android:id="@+id/notification_setting_checkbox_total_notification"
+            android:layout_width="64dp"
+            android:layout_height="32dp"
+            android:background="@drawable/selector_notification_setting_toggle"
+            android:button="@null"
+            android:layout_marginEnd="16dp"
+            android:onClick="@{() -> activity.onTotalAcceptClicked()}"
+            android:checked='@{viewModel.acceptTotalNotification.contains("IN") ? false : true}'
+            app:layout_constraintTop_toTopOf="@id/notification_setting_tv_accept_notification"
+            app:layout_constraintBottom_toBottomOf="@id/notification_setting_tv_accept_notification"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/notification_setting_rv_notification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:overScrollMode="never"
+            android:alpha='@{viewModel.acceptTotalNotification.contains("IN") ? 0.4F : 1.0F}'
+            android:clickable='@{viewModel.acceptTotalNotification.contains("IN") ? false : true}'
+            android:splitMotionEvents="false"
+            android:layout_marginHorizontal="16dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/notification_setting_tv_accept_notification" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

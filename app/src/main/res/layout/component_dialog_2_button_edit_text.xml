@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="dialog"
+            type="com.c7z.mappilogue_aos.presentation.ui.component.dialog.ComponentDialogEditText" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_white_12">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/component_dialog_edit_text_layout_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:background="@drawable/bg_gray15_40"
+            android:layout_marginTop="32dp"
+            app:layout_constraintTop_toTopOf="parent" >
+
+            <EditText
+                android:id="@+id/component_dialog_edit_text_edt_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Body_02"
+                android:background="@android:color/transparent"
+                android:maxLines="1"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginVertical="8dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/component_dialog_edit_text_layout_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="9dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/component_dialog_edit_text_layout_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_caution" />
+
+            <TextView
+                android:id="@+id/component_dialog_edit_text_tv_error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:textAppearance="@style/Caption_01"
+                android:textColor="@color/gray_5" />
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/component_dialog_edit_text_btn_first_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/bg_gray15_12"
+            android:onClick="@{() -> dialog.onDismiss()}"
+            app:layout_constraintTop_toBottomOf="@id/component_dialog_edit_text_layout_error"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/component_dialog_edit_text_btn_second_btn"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/component_dialog_edit_text_tv_first_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="11dp"
+                android:textAppearance="@style/Body_02"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/component_dialog_edit_text_btn_second_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_green1_12"
+            app:layout_constraintTop_toTopOf="@id/component_dialog_edit_text_btn_first_btn"
+            app:layout_constraintBottom_toBottomOf="@id/component_dialog_edit_text_btn_first_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/component_dialog_edit_text_btn_first_btn">
+
+            <TextView
+                android:id="@+id/component_dialog_edit_text_tv_second_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="11dp"
+                android:textAppearance="@style/Body_02"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

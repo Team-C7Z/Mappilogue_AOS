@@ -16,6 +16,7 @@ import com.c7z.mappilogue_aos.presentation.ui.main.home.today.adapter.TodayMarke
 import com.c7z.mappilogue_aos.presentation.ui.main.home.today.adapter.TodayRecyclerViewAdapter
 import com.c7z.mappilogue_aos.presentation.ui.main.home.today.viewmodel.TodayViewModel
 import com.c7z.mappilogue_aos.presentation.util.DpToPxConverter
+import com.c7z.mappilogue_aos.presentation.util.ItemDecorator
 
 class TodayFragment: Fragment(){
     private lateinit var binding: FragmentTodayBinding
@@ -66,26 +67,12 @@ class TodayFragment: Fragment(){
 
     private fun initTodayRv() {
         binding.todayRv.adapter = todayAdapter
-        binding.todayRv.addItemDecoration(VerticalItemDecorator(DpToPxConverter.dpToPx(16f, requireContext())))
+        binding.todayRv.addItemDecoration(ItemDecorator.VerticalItemDecorator(DpToPxConverter.dpToPx(16f, requireContext())))
     }
 
     private fun initTodayMarkedRv() {
         binding.todayMarkedRv.setHasFixedSize(true)
         binding.todayMarkedRv.adapter = todayMarkedAdapter
-        binding.todayMarkedRv.addItemDecoration(HorizontalItemDecorator(DpToPxConverter.dpToPx(14f, requireContext())))
-    }
-
-    inner class VerticalItemDecorator(private var spacing: Int): RecyclerView.ItemDecoration() {
-        override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
-            super.getItemOffsets(outRect, view, parent, state)
-            if (parent.getChildAdapterPosition(view) != 0) outRect.top = spacing
-        }
-    }
-
-    inner class HorizontalItemDecorator(private var spacing: Int): RecyclerView.ItemDecoration() {
-        override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
-            super.getItemOffsets(outRect, view, parent, state)
-            if (parent.getChildAdapterPosition(view) != 0) outRect.left = spacing
-        }
+        binding.todayMarkedRv.addItemDecoration(ItemDecorator.HorizontalItemDecorator(DpToPxConverter.dpToPx(14f, requireContext())))
     }
 }

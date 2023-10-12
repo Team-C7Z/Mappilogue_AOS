@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="activity"
+            type="com.c7z.mappilogue_aos.presentation.ui.change_profile.ChangeProfileActivity" />
+
+        <variable
+            name="viewModel"
+            type="com.c7z.mappilogue_aos.presentation.ui.change_profile.viewmodel.ChangeProfileViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/change_profile_layout_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/ic_arrow_left"
+                android:onClick="@{() -> activity.finishActivity()}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/change_profile_toolbar_title"
+                android:textAppearance="@style/Title_02"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/change_profile_card_profile"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:layout_margin="16dp"
+            app:cardCornerRadius="10000dp"
+            app:cardElevation="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/change_profile_layout_toolbar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    common_set_image="@{viewModel.userProfileData.profileImageUrl}"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="22dp"
+                    android:background="@color/gray_4"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/change_profile_change_photo"
+                        android:textAppearance="@style/Caption_03"
+                        android:textColor="@color/white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/change_profile_tv_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="@string/common_nickname"
+            android:textAppearance="@style/Body_02"
+            android:textColor="@color/gray_5"
+            app:layout_constraintStart_toEndOf="@id/change_profile_card_profile"
+            app:layout_constraintTop_toTopOf="@id/change_profile_card_profile" />
+
+        <TextView
+            android:id="@+id/change_profile_tv_user_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> activity.onNicknameChangeClicked(viewModel.userProfileData.nickname) }"
+            android:text="@{viewModel.userProfileData.nickname}"
+            android:textAppearance="@style/Title_02"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@id/change_profile_tv_nickname"
+            app:layout_constraintTop_toBottomOf="@id/change_profile_tv_nickname" />
+
+        <ImageView
+            android:id="@+id/change_profile_btn_change_user_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:onClick="@{() -> activity.onNicknameChangeClicked(viewModel.userProfileData.nickname) }"
+            android:src="@drawable/ic_user_nickname_edit"
+            app:layout_constraintBottom_toBottomOf="@id/change_profile_tv_user_nickname"
+            app:layout_constraintStart_toEndOf="@id/change_profile_tv_user_nickname"
+            app:layout_constraintTop_toTopOf="@id/change_profile_tv_user_nickname" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            android:layout_marginTop="3dp"
+            app:layout_constraintBottom_toBottomOf="@id/change_profile_tv_user_nickname"
+            app:layout_constraintEnd_toEndOf="@id/change_profile_btn_change_user_nickname"
+            app:layout_constraintStart_toStartOf="@id/change_profile_tv_user_nickname" />
+
+        <TextView
+            android:id="@+id/change_profile_tv_login_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/change_profile_login_account"
+            android:textAppearance="@style/Body_02"
+            android:textColor="@color/gray_5"
+            app:layout_constraintStart_toStartOf="@id/change_profile_card_profile"
+            app:layout_constraintTop_toBottomOf="@id/change_profile_card_profile" />
+
+        <ImageView
+            android:id="@+id/change_profile_iv_login_social_icon"
+            common_set_image='@{viewModel.userProfileData.snsType.contains("KAKAO") ? @drawable/ic_social_icon_kakao : @drawable/ic_social_icon_apple}'
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@id/change_profile_tv_login_account"
+            app:layout_constraintTop_toBottomOf="@id/change_profile_tv_login_account" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{viewModel.userProfileData.email}"
+            android:textAppearance="@style/Caption_01"
+            android:textColor="@color/gray_5"
+            app:layout_constraintBottom_toBottomOf="@id/change_profile_iv_login_social_icon"
+            app:layout_constraintStart_toEndOf="@id/change_profile_iv_login_social_icon"
+            app:layout_constraintTop_toTopOf="@id/change_profile_iv_login_social_icon" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

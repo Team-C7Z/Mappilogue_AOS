@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray_1"
-    tools:context=".presentation.ui.meet.MeetFragment">
+    tools:context=".presentation.ui.main.meet.MeetFragment">
 
     <TextView
         android:layout_width="wrap_content"

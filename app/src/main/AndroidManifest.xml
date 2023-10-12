@@ -20,6 +20,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mappilogue_AOS"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
         <activity
@@ -65,6 +66,22 @@
         <!-- TodoActivity -->
         <activity
             android:name=".presentation.ui.todo.TodoActivity"
+            android:exported="false" />
+
+        <!-- Change Profile -->
+        <activity android:name=".presentation.ui.change_profile.ChangeProfileActivity"
+            android:exported="false" />
+
+        <!-- Sign Out Reason -->
+        <activity android:name=".presentation.ui.sign_out_reason.SignOutReasonActivity"
+            android:exported="false" />
+
+        <!-- Notification Setting -->
+        <activity android:name=".presentation.ui.notification_setting.NotificationSettingActivity"
+            android:exported="false" />
+
+        <!-- Inquire -->
+        <activity android:name=".presentation.ui.inquire.InquireActivity"
             android:exported="false" />
 
         <!-- FCM -->
