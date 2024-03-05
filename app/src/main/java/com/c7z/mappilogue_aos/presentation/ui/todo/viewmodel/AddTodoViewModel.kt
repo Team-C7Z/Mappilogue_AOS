@@ -26,6 +26,9 @@ class AddTodoViewModel @Inject constructor(private val scheduleRepository : Sche
     private val _selectedColor = MutableLiveData<ResponseTodoColor.ResultTodoColor>()
     val selectedColor : LiveData<ResponseTodoColor.ResultTodoColor> = _selectedColor
 
+    private val _selectedDates = MutableLiveData<List<String>>()
+    val selectedDates : LiveData<List<String>> = _selectedDates
+
     private val _startDate = MutableLiveData<LocalDate>()
     val startDate : LiveData<LocalDate> = _startDate
 
@@ -35,9 +38,15 @@ class AddTodoViewModel @Inject constructor(private val scheduleRepository : Sche
     private val _checkStatus = MutableLiveData<Boolean>(false)
     val checkStatus : LiveData<Boolean> = _checkStatus
 
+    private val _selectedDate = MutableLiveData<String>()
+    val selectedDate : LiveData<String> = _selectedDate
+
+    private val _locationWithDate = mutableMapOf<String, MutableList<ResponseKakaoLocation.Document>>()
+    var locationWithDate : Map<String, MutableList<ResponseKakaoLocation.Document>> = _locationWithDate
+
     private val _locationList = MutableLiveData<MutableList<ResponseKakaoLocation.Document>>()
     val locationList : LiveData<MutableList<ResponseKakaoLocation.Document>> = _locationList
-    val toolsLocationList = mutableListOf<ResponseKakaoLocation.Document>()
+    private var toolsLocationList = mutableListOf<ResponseKakaoLocation.Document>()
 
     private var _checkedLocationList = mutableListOf<Int>()
     val checkedLocationList : List<Int> = _checkedLocationList
@@ -58,8 +67,16 @@ class AddTodoViewModel @Inject constructor(private val scheduleRepository : Sche
         _endDate.value = date
     }
 
+    fun setSelectedDates(dates : List<String>) {
+        _selectedDates.value = dates
+    }
+
     fun changeCheckStatus() {
         _checkStatus.value = _checkStatus.value?.not()
+    }
+
+    fun setSelectedDate(date : String) {
+        _selectedDate.value = date
     }
 
     fun insertLocationList(document : ResponseKakaoLocation.Document) {
@@ -75,6 +92,15 @@ class AddTodoViewModel @Inject constructor(private val scheduleRepository : Sche
     private fun notifyLocationList() {
         _locationList.value = toolsLocationList
         if(toolsLocationList.isEmpty()) _checkStatus.value = false
+    }
+
+    fun setLocationWithDate(locationList : MutableList<ResponseKakaoLocation.Document>) {
+        _locationWithDate[selectedDate.value!!] = locationList
+    }
+
+    fun onChangeSelectedDate() {
+        toolsLocationList = _locationWithDate[selectedDate.value!!] ?: mutableListOf()
+        notifyLocationList()
     }
 
     fun appendCheckedLocationList(position : Int) {
