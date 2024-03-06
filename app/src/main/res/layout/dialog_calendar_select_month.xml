@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="dialog"
+            type="com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.dialog.time.DialogAddTodoSetTime" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_white_12">
+
+        <TextView
+            android:id="@+id/dialog_add_todo_select_time_tv_delete_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_todo_set_time_remove_time"
+            android:textAppearance="@style/Caption_02"
+            android:textColor="@color/gray_5"
+            android:layout_margin="20dp"
+            android:onClick="@{() -> dialog.onRemoveTimeClicked()}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add_todo_delete"
+            android:layout_marginEnd="2dp"
+            app:layout_constraintTop_toTopOf="@id/dialog_add_todo_select_time_tv_delete_time"
+            app:layout_constraintBottom_toBottomOf="@id/dialog_add_todo_select_time_tv_delete_time"
+            app:layout_constraintEnd_toStartOf="@id/dialog_add_todo_select_time_tv_delete_time" />
+
+        <NumberPicker
+            android:id="@+id/dialog_add_todo_select_time_picker_hour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:selectionDividerHeight="0dp"
+            android:theme="@style/HourMinutePicker"
+            android:layout_marginStart="20dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/dialog_add_todo_select_time_picker_minute"/>
+
+        <NumberPicker
+            android:id="@+id/dialog_add_todo_select_time_picker_minute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:selectionDividerHeight="0dp"
+            android:theme="@style/HourMinutePicker"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <NumberPicker
+            android:id="@+id/dialog_add_todo_select_time_picker_ampm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:selectionDividerHeight="0dp"
+            android:theme="@style/HourMinutePicker"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/dialog_add_todo_select_time_picker_minute"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_year_month_picker_selection"
+            android:layout_marginHorizontal="20dp"
+            app:layout_constraintTop_toTopOf="@id/dialog_add_todo_select_time_picker_minute"
+            app:layout_constraintBottom_toBottomOf="@id/dialog_add_todo_select_time_picker_minute" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="23sp"
+                android:text=""
+                android:layout_marginVertical="4dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_dialog_add_todo_select_time_cancel"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="15dp"
+            android:onClick="@{() -> dialog.onCancelClicked()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_dialog_add_todo_select_time_save"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="15dp"
+            android:onClick="@{() -> dialog.onSaveClicked()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

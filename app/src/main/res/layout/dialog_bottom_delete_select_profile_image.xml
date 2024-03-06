@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="dialog"
+            type="com.c7z.mappilogue_aos.presentation.ui.main.calendar.dialog.CalendarDetailDialog" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_white_upper_24">
+
+        <ImageView
+            android:id="@+id/dialog_bottom_delete_mark_schedule_iv_mark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_write_mark"
+            android:layout_marginTop="62dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/dialog_bottom_delete_mark_schedule_tv_mark"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="기록 작성하기"
+            android:textAppearance="@style/Title_02"
+            android:textColor="@color/black"
+            android:paddingStart="16dp"
+            android:paddingVertical="16dp"
+            app:layout_constraintTop_toTopOf="@id/dialog_bottom_delete_mark_schedule_iv_mark"
+            app:layout_constraintBottom_toBottomOf="@id/dialog_bottom_delete_mark_schedule_iv_mark"
+            app:layout_constraintStart_toEndOf="@id/dialog_bottom_delete_mark_schedule_iv_mark"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:id="@+id/dialog_bottom_delete_mark_schedule_iv_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_delete_schedule"
+            app:layout_constraintTop_toTopOf="@id/dialog_bottom_delete_mark_schedule_tv_delete"
+            app:layout_constraintBottom_toBottomOf="@id/dialog_bottom_delete_mark_schedule_tv_delete"
+            app:layout_constraintStart_toStartOf="@id/dialog_bottom_delete_mark_schedule_iv_mark" />
+
+        <TextView
+            android:id="@+id/dialog_bottom_delete_mark_schedule_tv_delete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="일정 삭제하기"
+            android:onClick="@{() -> dialog.onDeleteClicked()}"
+            android:textAppearance="@style/Title_02"
+            android:textColor="@color/black"
+            android:paddingStart="16dp"
+            android:paddingVertical="16dp"
+            android:layout_marginBottom="62dp"
+            app:layout_constraintStart_toEndOf="@id/dialog_bottom_delete_mark_schedule_iv_delete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dialog_bottom_delete_mark_schedule_tv_mark"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
