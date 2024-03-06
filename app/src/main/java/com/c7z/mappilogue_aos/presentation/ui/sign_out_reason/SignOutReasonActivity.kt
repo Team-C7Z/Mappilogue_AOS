@@ -60,7 +60,7 @@ class SignOutReasonActivity : AppCompatActivity() {
 
     private fun observeSignOutStatus() {
         viewModel.signOutStatus.observe(this) {
-            if(it == 200) {
+            if(it == 204) {
                 socialLogOut().also { viewModel.removeUserDataAtLocal() }
                 setResult(RESULT_OK, Intent(this, MainActivity::class.java).also { it.putExtra("state", true) }).also { finishActivity() }
             }

@@ -1,6 +1,8 @@
 package com.c7z.mappilogue_aos.presentation.ui.main.calendar
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,27 +10,29 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.RecyclerView
 import com.c7z.mappilogue_aos.R
 import com.c7z.mappilogue_aos.databinding.ComponentCalendarDateBinding
 import com.c7z.mappilogue_aos.databinding.FragmentCalendarBinding
 import com.c7z.mappilogue_aos.presentation.ui.main.MainActivity
 import com.c7z.mappilogue_aos.presentation.ui.main.calendar.dialog.CalendarDailyDialog
+import com.c7z.mappilogue_aos.presentation.ui.main.calendar.dialog.CalendarSetYearMonthDialog
 import com.c7z.mappilogue_aos.presentation.ui.main.calendar.viewmodel.CalendarViewModel
 import com.c7z.mappilogue_aos.presentation.ui.main.viewmodel.MainViewModel
-import com.google.android.material.snackbar.Snackbar
+import com.c7z.mappilogue_aos.presentation.ui.todo.TodoActivity
 import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.DayPosition
 import com.kizitonwose.calendar.core.daysOfWeek
 import com.kizitonwose.calendar.view.MonthDayBinder
 import com.kizitonwose.calendar.view.ViewContainer
+import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate
 import java.time.YearMonth
+import java.time.format.DateTimeFormatter
 
+@AndroidEntryPoint
 class CalendarFragment : Fragment() {
     private lateinit var binding: FragmentCalendarBinding
-    private val viewModel: CalendarViewModel by viewModels()
+    private val viewModel: CalendarViewModel by activityViewModels()
     private val mainViewModel : MainViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,6 +43,7 @@ class CalendarFragment : Fragment() {
 
         initCalendar()
         initBinding()
+        initObserve()
         initRequire()
         initUi()
 
@@ -59,12 +64,22 @@ class CalendarFragment : Fragment() {
         viewModel.setRequireMonth(YearMonth.now().monthValue)
     }
 
+    private fun initObserve() {
+        observeCalendarSchedule()
+        calendarObserver()
+    }
+
     private fun initCalendarScroll() {
         binding.fgCalendarLayoutCalendar.monthScrollListener = { month ->
             viewModel.setRequireYear(month.yearMonth.year)
             viewModel.setRequireMonth(month.yearMonth.monthValue)
         }
         binding.fgCalendarLayoutCalendar.dayBinder = dayBinder
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.requestCurrentMonthScheduleData()
     }
 
     private fun calendarObserver() {
@@ -74,6 +89,7 @@ class CalendarFragment : Fragment() {
 
         viewModel.requireYear.observe(viewLifecycleOwner) {
             binding.fgCalendarLayoutCalendar.scrollToMonth(YearMonth.of(it, viewModel.requireMonth.value!!))
+            viewModel.requestCurrentMonthScheduleData()
         }
     }
 
@@ -92,11 +108,15 @@ class CalendarFragment : Fragment() {
                 }
                 it.componentCalendarLayoutToday.visibility =
                     if (data.date == LocalDate.now() && container.day.position == DayPosition.MonthDate) View.VISIBLE else View.GONE
+
+                viewModel.currentMonthScheduleSet.observe(viewLifecycleOwner) {items ->
+                    it.componentCalendarLayoutSchedule.visibility = if (container.day.date in items) View.VISIBLE else View.GONE
+                }
+
             }
         }
 
         override fun create(view: View): DayViewContainer = DayViewContainer(view)
-
     }
 
     inner class DayViewContainer(view: View) : ViewContainer(view) {
@@ -107,12 +127,14 @@ class CalendarFragment : Fragment() {
             view.setOnClickListener {
                 val dateBinding = this
                 if(binding.fgCalendarLayoutPicker.root.visibility == View.GONE) {
-                    openDailyDialog("${viewModel.requireYear.value}-${viewModel.requireMonth.value}-${dateBinding.dayText.text}")
+                    openDailyDialog(LocalDate.of(viewModel.requireYear.value!!, viewModel.requireMonth.value!!, dateBinding.dayText.text.toString().toInt()))
                 } else {
                     binding.fgCalendarLayoutPicker.root.visibility = View.GONE
                 }
             }
         }
+
+
     }
 
     private fun CalendarDay.checkDateColor(): Int {
@@ -129,7 +151,22 @@ class CalendarFragment : Fragment() {
                 }
             }
         } else {
-            resources.getColor(R.color.gray_4)
+            resources.getColor(R.color.gray_4, null)
+        }
+    }
+
+    private fun observeCalendarSchedule() {
+        viewModel.currentMonthSchedule.observe(viewLifecycleOwner) {
+            var set = mutableSetOf<LocalDate>()
+
+            for(i in it) {
+                var a = i.startDate.splitWithDate()
+                while(a <= i.endDate.splitWithDate()) {
+                    set.add(a)
+                    a = a.plusDays(1)
+                }
+            }
+            viewModel.setCurrentScheduleSet(set)
         }
     }
 
@@ -142,40 +179,18 @@ class CalendarFragment : Fragment() {
 
     private fun initUi() {
         binding.fgCalendarLayoutYearMonth.setOnClickListener {
-            binding.fgCalendarLayoutPicker.root.visibility = View.VISIBLE
-        }
-
-        initPicker()
-    }
-
-    private fun initPicker() {
-        calendarObserver()
-        binding.fgCalendarLayoutPicker.also {
-            it.itemWriteTodoPickerYear.apply {
-                displayedValues = getYearArray()
-                maxValue = getYearArray().size - 1
-
-                value = getYearArray().indexOf(viewModel.requireYear.value!!.toString())
-                this.setOnValueChangedListener { _, _, i ->
-                    viewModel.setRequireYear(i + startMonth.year)
-                }
-            }
-
-            it.itemWriteTodoPickerMonth.apply {
-                displayedValues = getMonthArray()
-                maxValue = getMonthArray().size - 1
-
-                value = viewModel.requireMonth.value!! - 1
-                this.setOnValueChangedListener { _, _, i ->
-                    viewModel.setRequireMonth(i + 1)
-                }
-            }
+            CalendarSetYearMonthDialog(startMonth.year, endMonth.year).show(requireActivity().supportFragmentManager, null)
         }
     }
 
-    fun openDailyDialog(date : String) {
+    fun openDailyDialog(date : LocalDate) {
+        viewModel.requestDetailScheduleDate(date.toString())
         mainViewModel.notifyCalendarDialogOpened()
-        CalendarDailyDialog().show(requireActivity().supportFragmentManager, date)
+        CalendarDailyDialog(::openModifyTodo).show(requireActivity().supportFragmentManager, date.toString())
+    }
+
+    private fun openModifyTodo(scheduleId : Int) {
+        startActivity(Intent(requireActivity(), TodoActivity::class.java).addFlags(scheduleId))
     }
 
     private fun getMonthArray(): Array<String> = mutableListOf<String>().apply {
@@ -192,6 +207,11 @@ class CalendarFragment : Fragment() {
 
     fun openTodoActivity() {
         (requireActivity() as MainActivity).openTodoActivity(LocalDate.now().toString())
+    }
+    
+    private fun String.splitWithDate() : LocalDate {
+        val dateArray = this.split("-")
+        return LocalDate.of(dateArray[0].toInt(), dateArray[1].toInt(), dateArray[2].toInt())
     }
 
 }

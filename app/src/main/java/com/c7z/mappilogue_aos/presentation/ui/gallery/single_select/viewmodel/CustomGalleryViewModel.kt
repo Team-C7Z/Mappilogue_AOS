@@ -1,14 +1,15 @@
-package com.proteam.fithub.presentation.ui.gallery.viewmodel
+package com.c7z.mappilogue_aos.presentation.ui.gallery.single_select.viewmodel
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.proteam.fithub.data.data.GalleryData
+import com.c7z.mappilogue_aos.data.data.GalleryData
 import java.io.File
 
 private const val INDEX_MEDIA_ID = MediaStore.MediaColumns._ID
@@ -20,6 +21,12 @@ class CustomGalleryViewModel : ViewModel() {
 
     private val _imageItemList = MutableLiveData<MutableList<GalleryData>>().apply { value = mutableListOf() }
     val imageItemList : LiveData<MutableList<GalleryData>> = _imageItemList
+
+    private val _legacyPosition = MutableLiveData<Int>()
+    val legacyPosition : LiveData<Int> = _legacyPosition
+
+    private val _checkedPosition = MutableLiveData<Int>()
+    val checkedPosition : LiveData<Int> = _checkedPosition
 
     private val _checkedSize = MutableLiveData<Int>(0)
     val checkedSize : LiveData<Int> = _checkedSize
@@ -48,19 +55,18 @@ class CustomGalleryViewModel : ViewModel() {
         cursor?.close()
     }
 
-    fun getCheckedImageUriList(): MutableList<String> {
-        val checkedImageUriList = mutableListOf<String>()
-        imageItemList.value?.let {
-            for(imageItem in imageItemList.value!!) {
-                if(imageItem.isChecked) checkedImageUriList.add(imageItem.uri.toString())
-            }
-        }
-        return checkedImageUriList
+    fun getCheckedImageUriList(): String {
+        return imageItemList.value!![checkedPosition.value!!].uri.toString().also {
+            Log.e(
+                "----",
+                "getCheckedImageUriList: $it",
+
+            ) }
     }
 
     fun changeImageClicked(position : Int) {
-        _imageItemList.value!![position].isChecked = _imageItemList.value!![position].isChecked.not()
-        _checkedSize.value = _imageItemList.value!!.count{ it.isChecked }
+        _legacyPosition.value = _checkedPosition.value
+        _checkedPosition.value = position
     }
 
 }

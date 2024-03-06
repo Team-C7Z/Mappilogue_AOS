@@ -1,8 +1,8 @@
-package com.proteam.fithub.data.data
+package com.c7z.mappilogue_aos.data.data
 
 import android.net.Uri
 
 data class GalleryData (
     var uri: Uri,
-    var isChecked: Boolean
+    var checked: Boolean
 )

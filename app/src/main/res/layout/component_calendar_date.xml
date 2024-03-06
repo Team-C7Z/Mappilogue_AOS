@@ -30,6 +30,19 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="10" />
 
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/component_calendar_layout_schedule"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            app:cardBackgroundColor="@color/green_1"
+            app:cardCornerRadius="10000dp"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/component_calendar_tv_date" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

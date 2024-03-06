@@ -9,7 +9,7 @@ import retrofit2.http.POST
 
 interface SignInService {
 
-    @POST("/api/v1/auth/social-login")
+    @POST("/api/v1/users/social-login")
     suspend fun requestSignIn(
         @Body body : RequestSignIn
     ) : Response<ResponseSignIn>

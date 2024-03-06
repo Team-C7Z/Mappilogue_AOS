@@ -1,5 +1,6 @@
 package com.c7z.mappilogue_aos.presentation.ui.main.mypage.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -25,14 +26,11 @@ class MypageViewModel @Inject constructor(
     private val _logOutStatus = MutableLiveData<Int>()
     val logOutStatus: LiveData<Int> = _logOutStatus
 
-    init {
-        requestUserProfile()
-    }
-
     fun requestUserProfile() {
         viewModelScope.launch {
             userRepository.requestUserProfileData()
-                .onSuccess { _userProfileData.value = it }
+                .onSuccess { _userProfileData.value = it
+                    Log.e("----", "requestUserProfile: $it", )}
         }
     }
 

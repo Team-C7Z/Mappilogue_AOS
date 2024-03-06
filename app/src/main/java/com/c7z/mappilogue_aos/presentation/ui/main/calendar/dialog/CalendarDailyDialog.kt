@@ -11,17 +11,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.c7z.mappilogue_aos.R
 import com.c7z.mappilogue_aos.databinding.DialogCalendarDateDetailBinding
+import com.c7z.mappilogue_aos.presentation.ui.component.dialog.ComponentDialogTwoButton
 import com.c7z.mappilogue_aos.presentation.ui.main.MainActivity
+import com.c7z.mappilogue_aos.presentation.ui.main.calendar.dialog.adapter.CalendarScheduleAdapter
+import com.c7z.mappilogue_aos.presentation.ui.main.calendar.viewmodel.CalendarViewModel
 import com.c7z.mappilogue_aos.presentation.ui.main.viewmodel.MainViewModel
+import java.time.LocalDate
 
-class CalendarDailyDialog : DialogFragment() {
+class CalendarDailyDialog (
+    private val openModifyTodo : (Int) -> Unit
+) : DialogFragment() {
     private lateinit var binding: DialogCalendarDateDetailBinding
     private val mainViewModel: MainViewModel by activityViewModels()
+    private val calendarViewModel : CalendarViewModel by activityViewModels()
+
+    private val adapter by lazy {
+        CalendarScheduleAdapter(::openModifyTodo, ::openDetailDialog)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,6 +49,7 @@ class CalendarDailyDialog : DialogFragment() {
 
         initBinding()
         initUi()
+        initObserve()
 
         return binding.root
     }
@@ -47,6 +60,50 @@ class CalendarDailyDialog : DialogFragment() {
 
     private fun initUi() {
         binding.dialogCalendarDateDetailTvDate.text = tag?.convertToDate()
+
+        binding.dialogCalendarDateDetailRvTodo.adapter = adapter
+    }
+
+    private fun initObserve() {
+        observeDetailData()
+        observeScheduleDeleteStatus()
+    }
+
+    private fun observeDetailData() {
+        calendarViewModel.detailDateScheduleData.observe(viewLifecycleOwner) {
+            binding.dialogCalendarDateDetailTvLunarDate.text = "음력" + it.lunarDate.substring(5)
+            adapter.items = it.schedulesOnSpecificDate.toMutableList().also { adapter.notifyDataSetChanged() }
+        }
+    }
+
+    private fun openDetailDialog(scheduleId : Int) {
+        CalendarDetailDialog(scheduleId, ::onScheduleDeleteClicked).show(requireActivity().supportFragmentManager, null)
+    }
+
+    private fun openModifyTodo(scheduleId : Int) {
+        openModifyTodo.invoke(scheduleId)
+        dismiss()
+    }
+
+    private fun onScheduleDeleteClicked(scheduleId: Int) {
+        ComponentDialogTwoButton(scheduleId, ::deleteSchedule, "RED").show(requireActivity().supportFragmentManager, "DELETE_SCHEDULE")
+    }
+
+    private fun deleteSchedule(scheduleId: Int?) {
+        calendarViewModel.requestDeleteSchedule(scheduleId!!)
+    }
+
+    private fun observeScheduleDeleteStatus() {
+        calendarViewModel.deleteScheduleState.observe(viewLifecycleOwner) {
+            if(it == 204) {
+                calendarViewModel.requestDetailScheduleDate(returnForRefresh())
+            }
+        }
+    }
+
+    private fun returnForRefresh() : String {
+        val ref = calendarViewModel.detailDateScheduleData.value?.solarDate!!.replace("년 ", "-").replace("월 ", "-").replace("일", "")
+        return LocalDate.of(ref.split("-")[0].toInt(), ref.split("-")[1].toInt(), ref.split("-")[2].toInt()).toString()
     }
 
     override fun onResume() {

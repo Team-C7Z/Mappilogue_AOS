@@ -1,4 +1,4 @@
-package com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.dialog.time
+package com.c7z.mappilogue_aos.presentation.ui.todo_alarm.dialog
 
 import android.content.Context
 import android.graphics.Color
@@ -12,19 +12,20 @@ import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import com.c7z.mappilogue_aos.R
+import com.c7z.mappilogue_aos.databinding.DialogAddTodoAlarmSelectTimeBinding
 import com.c7z.mappilogue_aos.databinding.DialogAddTodoSelectTimeBinding
 
-class DialogAddTodoSetTime (
-    private val onSaveClicked : (Int, String) -> Unit
+class DialogAddTodoAlarmSetTime (
+    private val onSaveClicked : (String) -> Unit
         ): DialogFragment() {
-    private lateinit var binding : DialogAddTodoSelectTimeBinding
+    private lateinit var binding : DialogAddTodoAlarmSelectTimeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.dialog_add_todo_select_time, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.dialog_add_todo_alarm_select_time, container, false)
 
         initBinding()
         initUi()
@@ -42,13 +43,8 @@ class DialogAddTodoSetTime (
         initAMPMPicker()
     }
 
-    fun onRemoveTimeClicked() {
-        onSaveClicked.invoke(tag!!.toInt(), "설정 안 함")
-        onDismiss()
-    }
-
     fun onSaveClicked() {
-        onSaveClicked.invoke(tag!!.toInt(), getTime())
+        onSaveClicked.invoke(getTime())
         onDismiss()
     }
 
@@ -61,29 +57,59 @@ class DialogAddTodoSetTime (
     }
 
     private fun getTime() : String {
-        return "${getHourArray()[binding.dialogAddTodoSelectTimePickerHour.value]}:${getMinArray()[binding.dialogAddTodoSelectTimePickerMinute.value]} ${getAMPM()[binding.dialogAddTodoSelectTimePickerAmpm.value]}"
+        return "${getHourArray()[binding.dialogAddTodoAlarmSelectTimePickerHour.value]}:${getMinArray()[binding.dialogAddTodoAlarmSelectTimePickerMinute.value]} ${getAMPM()[binding.dialogAddTodoAlarmSelectTimePickerAmpm.value]}"
     }
 
     private fun initHourPicker() {
-        binding.dialogAddTodoSelectTimePickerHour.apply {
+        binding.dialogAddTodoAlarmSelectTimePickerHour.apply {
             displayedValues = getHourArray()
             maxValue = getHourArray().size - 1
-            value = getHourArray().indexOf("10")
+            value = getHourArray().indexOf("9")
+
+            displayedValues[0].setHourGuideText()
+
+            setOnValueChangedListener { _, _, i2 ->
+                displayedValues[i2].setHourGuideText()
+            }
         }
+    }
+
+    private fun String.setHourGuideText() {
+        binding.dialogAddTodoAlarmSelectTimeToolsTvHour.text = this
     }
 
     private fun initMinPicker() {
-        binding.dialogAddTodoSelectTimePickerMinute.apply {
+        binding.dialogAddTodoAlarmSelectTimePickerMinute.apply {
             displayedValues = getMinArray()
             maxValue = getMinArray().size - 1
+
+            displayedValues[0].setMinGuideText()
+
+            setOnValueChangedListener { _, _, i2 ->
+                displayedValues[i2].setMinGuideText()
+            }
         }
     }
 
+    private fun String.setMinGuideText() {
+        binding.dialogAddTodoAlarmSelectTimeToolsTvMinute.text = this
+    }
+
     private fun initAMPMPicker() {
-        binding.dialogAddTodoSelectTimePickerAmpm.apply {
+        binding.dialogAddTodoAlarmSelectTimePickerAmpm.apply {
             displayedValues = getAMPM()
             maxValue = getAMPM().size - 1
+
+            displayedValues[0].setAmPmGuideText()
+
+            setOnValueChangedListener { _, _, i2 ->
+                displayedValues[i2].setAmPmGuideText()
+            }
         }
+    }
+
+    private fun String.setAmPmGuideText() {
+        binding.dialogAddTodoAlarmSelectTimeToolsTvAmpm.text = this
     }
 
     private fun getHourArray() : Array<String> = mutableListOf<String>().apply {

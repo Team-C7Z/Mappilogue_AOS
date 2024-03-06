@@ -6,17 +6,17 @@
     <data>
         <variable
             name="activity"
-            type="com.proteam.fithub.presentation.ui.gallery.view.CustomGalleryActivity" />
+            type="com.c7z.mappilogue_aos.presentation.ui.gallery.single_select.CustomGalleryActivity" />
 
         <variable
             name="viewModel"
-            type="com.proteam.fithub.presentation.ui.gallery.viewmodel.CustomGalleryViewModel" />
+            type="com.c7z.mappilogue_aos.presentation.ui.gallery.single_select.viewmodel.CustomGalleryViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/bg_default">
+        android:background="@color/gray_1">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/custom_gallery_layout_toolbar"
@@ -27,27 +27,34 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{@string/board_selected_photo_count(viewModel.checkedSize)}"
-                android:textSize="17sp"
-                android:fontFamily="@font/pretendard_semibold"
+                android:text="최근 항목"
+                android:textAppearance="@style/Title_02"
                 android:includeFontPadding="false"
-                android:textColor="@color/text_default"
+                android:textColor="@color/black"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
-            <TextView
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="선택"
-                android:textAppearance="@style/Body_medium_regular"
+                android:src="@drawable/ic_gallery_save"
                 android:onClick="@{() -> activity.setResult()}"
-                android:textColor="@color/text_sub01"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="16dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_gallery_close"
+
+                android:layout_marginStart="16dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -58,9 +65,10 @@
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             android:orientation="vertical"
             app:spanCount="3"
+            android:overScrollMode="never"
             app:layout_constraintTop_toBottomOf="@id/custom_gallery_layout_toolbar"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:listitem="@layout/item_custom_gallery_images_form"/>
+            tools:listitem="@layout/item_custom_gallery_single_image_form"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

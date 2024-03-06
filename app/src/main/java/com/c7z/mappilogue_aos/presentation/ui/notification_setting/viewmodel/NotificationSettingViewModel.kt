@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.c7z.mappilogue_aos.data.remote.response.ResponseNotificationSettingData
 import com.c7z.mappilogue_aos.domain.repository.NotificationRepository
+import com.c7z.mappilogue_aos.presentation.util.BaseResponse
+import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -27,9 +29,11 @@ class NotificationSettingViewModel @Inject constructor(private val notificationR
         viewModelScope.launch {
             notificationRepository.requestNotificationData()
                 .onSuccess {
+                    Log.e("----", "requestNotificationData: SUCCESS $it", )
                     _acceptTotalNotification.value = it.isTotalAlarm
                     _notificationCheckItems.value = mutableListOf(it.isNoticeAlarm, it.isScheduleReminderAlarm, it.isMarketingAlarm)
                 }
+                .onFailure { Log.e("----", "requestNotificationData: FAIL ${Gson().fromJson(it.message, BaseResponse::class.java).message}", ) }
         }
     }
 

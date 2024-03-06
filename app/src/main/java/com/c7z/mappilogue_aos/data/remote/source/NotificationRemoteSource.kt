@@ -11,7 +11,7 @@ class NotificationRemoteSource @Inject constructor(private val service : Notific
         val res = service.requestNotificationSettingData()
         return when(res.code()) {
             in 200..399 -> Result.success(res.body()!!.result)
-            else -> Result.failure(IllegalArgumentException(res.errorBody()?.convertAndGetCode().toString()))
+            else -> Result.failure(IllegalArgumentException(res.errorBody()?.string()))
         }
     }
 
@@ -19,7 +19,7 @@ class NotificationRemoteSource @Inject constructor(private val service : Notific
         val res = service.requestModifyNotificationSettingData(body)
         return when(res.code()) {
             in 200..399 -> Result.success(res.code())
-            else -> Result.failure(IllegalArgumentException(res.errorBody()?.convertAndGetCode().toString()))
+            else -> Result.failure(IllegalArgumentException(res.errorBody()?.string()))
         }
     }
 }

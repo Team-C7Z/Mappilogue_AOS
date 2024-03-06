@@ -1,4 +1,4 @@
-package com.proteam.fithub.presentation.ui.gallery.view
+package com.c7z.mappilogue_aos.presentation.ui.gallery.single_select
 
 import android.app.Activity
 import android.content.Intent
@@ -6,25 +6,22 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.proteam.fithub.presentation.ui.gallery.viewmodel.CustomGalleryViewModel
+import com.c7z.mappilogue_aos.R
+import com.c7z.mappilogue_aos.databinding.ActivityCustomGallerySinglePickBinding
+import com.c7z.mappilogue_aos.presentation.ui.gallery.single_select.adapter.GalleryAdapter
+import com.c7z.mappilogue_aos.presentation.ui.gallery.single_select.viewmodel.CustomGalleryViewModel
 import com.google.android.material.snackbar.Snackbar
-import com.proteam.fithub.R
-import com.proteam.fithub.databinding.ActivityCustomGalleryBinding
-import com.proteam.fithub.presentation.ui.gallery.adapter.GalleryAdapter
-import com.proteam.fithub.presentation.util.AnalyticsHelper
 
 class CustomGalleryActivity : AppCompatActivity() {
-    private lateinit var binding : ActivityCustomGalleryBinding
+    private lateinit var binding : ActivityCustomGallerySinglePickBinding
     private val viewModel : CustomGalleryViewModel by viewModels()
     private val galleryAdapter by lazy {
-        GalleryAdapter(::onImageClick, ::snackbarWhenOverLength)
+        GalleryAdapter(::onImageClick)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_custom_gallery)
-
-        AnalyticsHelper.setAnalyticsLog(this.javaClass.simpleName)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_custom_gallery_single_pick)
 
         initBinding()
         initRV()
@@ -50,19 +47,33 @@ class CustomGalleryActivity : AppCompatActivity() {
         viewModel.imageItemList.observe(this) {
             galleryAdapter.galleryData = it
         }
+
+        viewModel.checkedPosition.observe(this) {
+            if(it != null) {
+                galleryAdapter.galleryData[it].checked = true
+                galleryAdapter.notifyItemChanged(it)
+            }
+        }
+
+        viewModel.legacyPosition.observe(this) {
+            if(it != null) {
+                galleryAdapter.galleryData[it].checked = false
+                galleryAdapter.notifyItemChanged(it)
+            }
+        }
     }
 
     private fun onImageClick(position : Int) {
         viewModel.changeImageClicked(position)
-        galleryAdapter.notifyItemChanged(position)
-    }
-
-    private fun snackbarWhenOverLength() {
-        Snackbar.make(binding.root, "사진은 최대 10장까지 선택할 수 있습니다.", Snackbar.LENGTH_SHORT).show()
     }
 
     fun setResult() {
-        setResult(Activity.RESULT_OK, Intent().putExtra("Images", viewModel.getCheckedImageUriList() as ArrayList))
-        finish()
+        if(viewModel.checkedPosition.value != null) {
+            setResult(
+                Activity.RESULT_OK,
+                Intent().putExtra("Image", viewModel.getCheckedImageUriList())
+            )
+            finish()
+        }
     }
 }

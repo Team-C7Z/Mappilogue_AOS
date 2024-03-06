@@ -12,7 +12,7 @@
 
         <variable
             name="viewModel"
-            type="com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.viewmodel.AddTodoViewModel" />
+            type="com.c7z.mappilogue_aos.presentation.ui.todo.viewmodel.AddTodoViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -34,6 +34,7 @@
                 android:layout_marginTop="22dp"
                 android:background="@android:color/transparent"
                 android:hint="@string/add_todo_title_hint"
+                android:text="@={viewModel.todoTitle}"
                 android:paddingVertical="12dp"
                 android:textAppearance="@style/Title_02"
                 android:textColorHint="@color/gray_3"
@@ -206,6 +207,7 @@
                 android:id="@+id/fg_add_todo_layout_alarm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="@{() -> fragment.openAlarmActivity()}"
                 android:layout_marginHorizontal="16dp"
                 app:layout_constraintTop_toBottomOf="@id/fg_add_todo_view_divider_02">
 
@@ -248,54 +250,38 @@
                 android:background="@color/gray_2"
                 app:layout_constraintTop_toBottomOf="@id/fg_add_todo_layout_alarm" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/fg_add_todo_layout_repeat"
+
+
+            <HorizontalScrollView
+                android:id="@+id/fg_add_todo_layout_scroll_chip"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:paddingStart="16dp"
+                android:clipToPadding="false"
+                android:scrollbars="none"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/fg_add_todo_view_divider_03">
 
-                <ImageView
-                    android:id="@+id/fg_add_todo_iv_repeat"
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/fg_add_todo_chipgroup_chip"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="16dp"
-                    android:src="@drawable/ic_add_todo_repeat"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_height="wrap_content" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="@string/add_todo_repeat"
-                    android:textAppearance="@style/Body_02"
-                    android:textColor="@color/gray_5"
-                    app:layout_constraintBottom_toBottomOf="@id/fg_add_todo_iv_repeat"
-                    app:layout_constraintStart_toEndOf="@id/fg_add_todo_iv_repeat"
-                    app:layout_constraintTop_toTopOf="@id/fg_add_todo_iv_repeat" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_chevron_right"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </HorizontalScrollView>
 
             <LinearLayout
                 android:id="@+id/fg_add_todo_btn_delete_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
                 android:onClick="@{() -> fragment.onLocationDeleteClicked()}"
                 android:orientation="horizontal"
                 android:visibility="@{viewModel.checkStatus ? View.VISIBLE : View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fg_add_todo_layout_repeat">
+                app:layout_constraintTop_toBottomOf="@id/fg_add_todo_layout_scroll_chip">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -323,7 +309,7 @@
                 android:orientation="horizontal"
                 android:visibility="@{viewModel.locationList == null || viewModel.locationList.empty ? View.GONE : View.VISIBLE}"
                 app:layout_constraintEnd_toStartOf="@id/fg_add_todo_btn_delete_location"
-                app:layout_constraintTop_toBottomOf="@id/fg_add_todo_layout_repeat">
+                app:layout_constraintTop_toTopOf="@id/fg_add_todo_btn_delete_location">
 
                 <ImageView
                     android:layout_width="wrap_content"

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Mappilogue_AOS</string>
+    <string name="app_name">맵필로그</string>
 
     <string name="title_sign_in">맵필로그, 기억의 시작</string>
 
@@ -42,7 +42,7 @@
     <string name="request_permission_grant_and_start">허용하고 시작하기</string>
 
     <!-- 회원가입 결과 -->
-    <string name="sign_up_result_title">회원가입이 완료되었어요</string>
+    <string name="sign_up_result_title">맵필로그에 오신 걸 환영해요!</string>
     <string name="sign_up_result_subtitle">3초 뒤에 홈으로 이동할게요</string>
 
     <!-- 일정 추가하기 -->
@@ -58,6 +58,10 @@
     <string name="add_todo_search_location_search">장소 검색</string>
 
     <string name="add_todo_set_time_remove_time">시간삭제</string>
+
+    <!-- 일정 알림 -->
+    <string name="add_todo_from_start_date">시작일 기준</string>
+    <string name="add_todo_alarm_list">알림 리스트</string>
 
     <!-- MY -->
     <string name="my_user_nickname">%s 님</string>

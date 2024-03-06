@@ -23,7 +23,7 @@ class ComponentDialogEditText(
 ) : DialogFragment() {
     private lateinit var binding: ComponentDialog2ButtonEditTextBinding
 
-    private val nickNameRegex = Regex("^[가-힣ㄱ-ㅎa-zA-Z0-9._-]{1,8}\$")
+    private val nickNameRegex = Regex("^[가-힣a-zA-Z._-]{1,8}\$")
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -89,7 +89,7 @@ class ComponentDialogEditText(
         }
         binding.componentDialogEditTextTvFirstBtn.text = "닫기"
         binding.componentDialogEditTextTvSecondBtn.text = "바꾸기"
-        binding.componentDialogEditTextTvError.text = "초성이나 특수문자는 넣을 수 없어요"
+        binding.componentDialogEditTextTvError.text = "초성이나 특수문자, 숫자는 넣을 수 없어요"
     }
 
     fun onDismiss() {

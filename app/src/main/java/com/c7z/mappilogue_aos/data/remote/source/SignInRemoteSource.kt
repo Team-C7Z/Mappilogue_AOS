@@ -12,7 +12,7 @@ class SignInRemoteSource @Inject constructor(private val service : SignInService
         val res = service.requestSignIn(body)
         return when(res.code()) {
             in 200..399 -> Result.success(res.body()!!.result)
-            else -> Result.failure(IllegalArgumentException(res.errorBody()?.convertAndGetCode().toString()))
+            else -> Result.failure(IllegalArgumentException(res.errorBody()?.string()))
         }
     }
 }
