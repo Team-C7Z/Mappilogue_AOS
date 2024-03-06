@@ -45,6 +45,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_save_todo"
                 android:layout_marginEnd="17dp"
+                android:onClick="@{() -> activity.onSaveClicked()}"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />

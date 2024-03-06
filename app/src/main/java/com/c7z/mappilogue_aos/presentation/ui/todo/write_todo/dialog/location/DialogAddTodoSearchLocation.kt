@@ -20,7 +20,7 @@ import com.c7z.mappilogue_aos.data.remote.response.ResponseKakaoLocation
 import com.c7z.mappilogue_aos.databinding.DialogAddTodoSearchLocationBinding
 import com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.dialog.location.adapter.LocationAdapter
 import com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.dialog.location.viewmodel.DialogAddTodoSearchLocationViewModel
-import com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.viewmodel.AddTodoViewModel
+import com.c7z.mappilogue_aos.presentation.ui.todo.viewmodel.AddTodoViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

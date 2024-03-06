@@ -2,9 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -16,7 +21,7 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_mappilogue"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mappilogue_AOS"
@@ -68,6 +73,10 @@
             android:name=".presentation.ui.todo.TodoActivity"
             android:exported="false" />
 
+        <!-- TodoAlarmActivity -->
+        <activity android:name=".presentation.ui.todo_alarm.AddTodoAlarmActivity"
+            android:exported="false" />
+
         <!-- Change Profile -->
         <activity android:name=".presentation.ui.change_profile.ChangeProfileActivity"
             android:exported="false" />
@@ -82,6 +91,10 @@
 
         <!-- Inquire -->
         <activity android:name=".presentation.ui.inquire.InquireActivity"
+            android:exported="false" />
+
+        <!-- Gallery Single -->
+        <activity android:name=".presentation.ui.gallery.single_select.CustomGalleryActivity"
             android:exported="false" />
 
         <!-- FCM -->

@@ -88,6 +88,17 @@
                 app:layout_constraintBottom_toBottomOf="parent" />
 
             <TextView
+                android:id="@+id/fg_my_tv_version_info_local"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Body_02"
+                android:textColor="@color/gray_5"
+                android:layout_marginStart="8dp"
+                app:layout_constraintTop_toTopOf="@id/fg_my_tv_version_info_title"
+                app:layout_constraintBottom_toBottomOf="@id/fg_my_tv_version_info_title"
+                app:layout_constraintStart_toEndOf="@id/fg_my_tv_version_info_title"/>
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/common_update"

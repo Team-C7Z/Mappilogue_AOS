@@ -1,25 +1,22 @@
-package com.proteam.fithub.presentation.ui.gallery.adapter
+package com.c7z.mappilogue_aos.presentation.ui.gallery.single_select.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.proteam.fithub.data.data.GalleryData
-import com.proteam.fithub.databinding.ItemCustomGalleryImagesFormBinding
+import com.c7z.mappilogue_aos.data.data.GalleryData
+import com.c7z.mappilogue_aos.databinding.ItemCustomGallerySingleImageFormBinding
 
-class GalleryAdapter(private val onClick: (Int) -> Unit, private val onOverClicked : () -> Unit) :
+class GalleryAdapter(private val onClick: (Int) -> Unit) :
     RecyclerView.Adapter<GalleryAdapter.GalleryViewHolder>() {
     var galleryData = mutableListOf<GalleryData>()
-
-    inner class GalleryViewHolder(private val binding: ItemCustomGalleryImagesFormBinding) :
+    var checkedPosition = null
+    inner class GalleryViewHolder(private val binding: ItemCustomGallerySingleImageFormBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: GalleryData) {
             binding.galleryData = item
+            binding.image.setImageURI(item.uri)
             binding.root.setOnClickListener {
-                if(galleryData.count{ it.isChecked} == 10 && !item.isChecked) {
-                    onOverClicked.invoke()
-                } else {
-                    onClick.invoke(adapterPosition)
-                }
+                    onClick.invoke(absoluteAdapterPosition)
             }
         }
     }
@@ -29,7 +26,7 @@ class GalleryAdapter(private val onClick: (Int) -> Unit, private val onOverClick
         viewType: Int
     ): GalleryViewHolder {
         return GalleryViewHolder(
-            ItemCustomGalleryImagesFormBinding.inflate(
+            ItemCustomGallerySingleImageFormBinding.inflate(
                 LayoutInflater.from(
                     parent.context
                 ), parent, false

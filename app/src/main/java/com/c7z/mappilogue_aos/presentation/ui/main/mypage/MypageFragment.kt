@@ -2,6 +2,7 @@ package com.c7z.mappilogue_aos.presentation.ui.main.mypage
 
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +13,7 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import com.c7z.mappilogue_aos.BuildConfig
 import com.c7z.mappilogue_aos.R
 import com.c7z.mappilogue_aos.databinding.FragmentMypageBinding
 import com.c7z.mappilogue_aos.presentation.ui.change_profile.ChangeProfileActivity
@@ -54,12 +56,17 @@ class MypageFragment : Fragment() {
     }
 
     private fun initUi() {
+        initLocalVersionInfo()
         initUpperRv()
         initLowerRv()
     }
 
     private fun initObserve() {
         observeLogOut()
+    }
+
+    private fun initLocalVersionInfo() {
+        binding.fgMyTvVersionInfoLocal.text = BuildConfig.VERSION_NAME
     }
 
     private fun initUpperRv() {
@@ -95,16 +102,16 @@ class MypageFragment : Fragment() {
     }
 
     private fun onLogoutClicked() {
-        ComponentDialogTwoButton(::requestLogOut, "GREEN").show(requireActivity().supportFragmentManager, "LOG_OUT")
+        ComponentDialogTwoButton(null, ::requestLogOut, "GREEN").show(requireActivity().supportFragmentManager, "LOG_OUT")
     }
 
-    private fun requestLogOut() {
+    private fun requestLogOut(noinline : Int?) {
         viewModel.requestLogOut()
     }
 
     private fun observeLogOut() {
         viewModel.logOutStatus.observe(viewLifecycleOwner) {
-            if(it == 200) {
+            if(it == 204) {
                 socialLogOut().also { viewModel.removeUserDataAtLocal() }
                 startActivity(Intent(requireActivity(), SignInActivity::class.java)).also { requireActivity().finish() }
             }
@@ -147,4 +154,10 @@ class MypageFragment : Fragment() {
                 }
             }
         }
+
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.requestUserProfile()
+    }
 }

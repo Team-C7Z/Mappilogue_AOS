@@ -1,10 +1,12 @@
 package com.c7z.mappilogue_aos.presentation.util
 
+import android.util.Log
+import com.google.gson.Gson
 import okhttp3.ResponseBody
 
 object ErrorConverter {
 
-    fun ResponseBody.convertAndGetCode() : Int {
-        return this.string().split(",")[1].split(":")[1].trim().toInt()
+    fun String.convertAndGetCode() : BaseResponse {
+        return Gson().fromJson(this, BaseResponse::class.java)
     }
 }

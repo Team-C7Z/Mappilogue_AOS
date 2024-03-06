@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import com.c7z.mappilogue_aos.R
 import com.c7z.mappilogue_aos.databinding.ActivityMainBinding
 import com.c7z.mappilogue_aos.presentation.ui.main.calendar.CalendarFragment
+import com.c7z.mappilogue_aos.presentation.ui.main.calendar.viewmodel.CalendarViewModel
 import com.c7z.mappilogue_aos.presentation.ui.main.home.HomeFragment
 import com.c7z.mappilogue_aos.presentation.ui.main.meet.MeetFragment
 import com.c7z.mappilogue_aos.presentation.ui.main.memorize.MemorizeFragment
@@ -26,6 +27,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val viewModel : MainViewModel by viewModels()
+    private val calendarViewModel : CalendarViewModel by viewModels()
 
     private val PERMISSION_REQUEST_CODE = 5000
 

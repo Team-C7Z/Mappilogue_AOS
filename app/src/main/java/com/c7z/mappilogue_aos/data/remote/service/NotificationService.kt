@@ -9,10 +9,10 @@ import retrofit2.http.PUT
 
 interface NotificationService {
 
-    @GET("/api/v1/users/alarms-setting")
+    @GET("/api/v1/user-profiles/alarm-settings")
     suspend fun requestNotificationSettingData() : Response<ResponseNotificationSettingData>
 
-    @PUT("/api/v1/users/alarms-setting")
+    @PUT("/api/v1/user-profiles/alarm-settings")
     suspend fun requestModifyNotificationSettingData(
         @Body body : ResponseNotificationSettingData.ResultNotificationSettingData
     ) : Response<BaseResponse>

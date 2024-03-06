@@ -13,7 +13,7 @@ import com.c7z.mappilogue_aos.R
 import com.c7z.mappilogue_aos.databinding.DialogAddTodoDatePickerBinding
 import com.c7z.mappilogue_aos.databinding.ItemDialogAddTodoPickDateDayBinding
 import com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.dialog.add_todo.viewmodel.DialogAddTodoPickDateViewModel
-import com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.viewmodel.AddTodoViewModel
+import com.c7z.mappilogue_aos.presentation.ui.todo.viewmodel.AddTodoViewModel
 import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.DayPosition
 import com.kizitonwose.calendar.core.daysOfWeek

@@ -1,6 +1,7 @@
 package com.c7z.mappilogue_aos.presentation.ui.notification_setting
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil

@@ -1,30 +1,36 @@
-package com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.dialog.time
+package com.c7z.mappilogue_aos.presentation.ui.main.calendar.dialog
 
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Point
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
 import com.c7z.mappilogue_aos.R
 import com.c7z.mappilogue_aos.databinding.DialogAddTodoSelectTimeBinding
+import com.c7z.mappilogue_aos.databinding.DialogCalendarSelectMonthBinding
+import com.c7z.mappilogue_aos.presentation.ui.main.calendar.viewmodel.CalendarViewModel
 
-class DialogAddTodoSetTime (
-    private val onSaveClicked : (Int, String) -> Unit
+class CalendarSetYearMonthDialog (
+    private val startYear : Int,
+    private val endYear : Int,
         ): DialogFragment() {
-    private lateinit var binding : DialogAddTodoSelectTimeBinding
+    private lateinit var binding : DialogCalendarSelectMonthBinding
+    private val viewModel : CalendarViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.dialog_add_todo_select_time, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.dialog_calendar_select_month, container, false)
 
         initBinding()
         initUi()
@@ -39,16 +45,10 @@ class DialogAddTodoSetTime (
     private fun initUi() {
         initHourPicker()
         initMinPicker()
-        initAMPMPicker()
     }
-
-    fun onRemoveTimeClicked() {
-        onSaveClicked.invoke(tag!!.toInt(), "설정 안 함")
-        onDismiss()
-    }
-
     fun onSaveClicked() {
-        onSaveClicked.invoke(tag!!.toInt(), getTime())
+        viewModel.setRequireYear(getYear())
+        viewModel.setRequireMonth(getMonth())
         onDismiss()
     }
 
@@ -60,45 +60,43 @@ class DialogAddTodoSetTime (
         dismiss()
     }
 
-    private fun getTime() : String {
-        return "${getHourArray()[binding.dialogAddTodoSelectTimePickerHour.value]}:${getMinArray()[binding.dialogAddTodoSelectTimePickerMinute.value]} ${getAMPM()[binding.dialogAddTodoSelectTimePickerAmpm.value]}"
+    private fun getYear() : Int {
+        return getYearArray()[binding.dialogCalendarSelectMonthPickerYear.value].toInt()
+    }
+
+    private fun getMonth() : Int {
+        return getMonthArray()[binding.dialogCalendarSelectMonthPickerMinute.value].toInt()
     }
 
     private fun initHourPicker() {
-        binding.dialogAddTodoSelectTimePickerHour.apply {
-            displayedValues = getHourArray()
-            maxValue = getHourArray().size - 1
-            value = getHourArray().indexOf("10")
+        binding.dialogCalendarSelectMonthPickerYear.apply {
+            displayedValues = getYearArray()
+            maxValue = getYearArray().size - 1
+
+            value = getYearArray().indexOf(viewModel.requireYear.value!!.toString())
         }
     }
 
     private fun initMinPicker() {
-        binding.dialogAddTodoSelectTimePickerMinute.apply {
-            displayedValues = getMinArray()
-            maxValue = getMinArray().size - 1
+        binding.dialogCalendarSelectMonthPickerMinute.apply {
+            displayedValues = getMonthArray()
+            maxValue = getMonthArray().size - 1
+            value = viewModel.requireMonth.value!! - 1
         }
     }
 
-    private fun initAMPMPicker() {
-        binding.dialogAddTodoSelectTimePickerAmpm.apply {
-            displayedValues = getAMPM()
-            maxValue = getAMPM().size - 1
-        }
-    }
-
-    private fun getHourArray() : Array<String> = mutableListOf<String>().apply {
+    private fun getMonthArray(): Array<String> = mutableListOf<String>().apply {
         for (i in 1 until 13) {
             this.add(i.toString())
         }
     }.toTypedArray()
 
-    private fun getMinArray() : Array<String> = mutableListOf<String>().apply {
-        for(i in 0 until 60) {
-            this.add(String.format("%02d", i))
+    private fun getYearArray(): Array<String> = mutableListOf<String>().apply {
+        for (i in startYear until endYear) {
+            this.add(i.toString())
         }
     }.toTypedArray()
 
-    private fun getAMPM() : Array<String> = mutableListOf("AM", "PM").toTypedArray()
 
     /** Set Dialog Size **/
     override fun onResume() {

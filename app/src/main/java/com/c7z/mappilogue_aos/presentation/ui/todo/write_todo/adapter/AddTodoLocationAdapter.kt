@@ -1,5 +1,6 @@
 package com.c7z.mappilogue_aos.presentation.ui.todo.write_todo.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.CheckBox
@@ -19,7 +20,7 @@ class AddTodoLocationAdapter(
     inner class AddTodoLocationViewHolder(private val binding: ItemAddTodoLocationsBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ResponseKakaoLocation.Document) {
-            binding.data = item
+            binding.data = item.apply { if(item.time.isNullOrEmpty()) item.time = "설정 안 함" }
             binding.checkStatus = checkStatus
 
             binding.itemAddTodoLocationsCheckCheck.isChecked = item.isChecked

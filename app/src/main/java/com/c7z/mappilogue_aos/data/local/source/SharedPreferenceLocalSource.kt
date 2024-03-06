@@ -12,4 +12,13 @@ class SharedPreferenceLocalSource : SharedPreferenceSource {
         mSharedPreferences.edit().clear().apply()
     }
 
+    override suspend fun requestRefreshToken(): String {
+        return mSharedPreferences.getString("refresh", "") ?: ""
+    }
+
+    override suspend fun requestAccessToken(): String {
+        return mSharedPreferences.getString("jwt", "") ?: ""
+    }
+
+
 }

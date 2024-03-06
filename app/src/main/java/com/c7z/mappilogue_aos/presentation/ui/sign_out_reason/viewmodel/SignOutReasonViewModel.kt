@@ -45,7 +45,10 @@ class SignOutReasonViewModel @Inject constructor(
     fun requestSignOut() {
         viewModelScope.launch {
             userRepository.requestSignOut(RequestSignOut(checkedItemPositions.setSignOutBody()))
-                .onSuccess { _signOutStatus.value = it }
+                .onSuccess { _signOutStatus.value = it
+                    Log.e("----", "requestSignOut: $it", )}
+                .onFailure { Log.e("----", "requestSignOut: ${it.message}", ) }
+
         }
     }
 

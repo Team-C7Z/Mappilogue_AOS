@@ -16,8 +16,9 @@ import com.c7z.mappilogue_aos.R
 import com.c7z.mappilogue_aos.databinding.ComponentDialog2ButtonBinding
 
 class ComponentDialogTwoButton (
+    private val param : Int?,
     /** 두 번째 버튼 클릭시 **/
-    private val onSecondBtnClicked : () -> Unit,
+    private val onSecondBtnClicked : (Int?) -> Unit,
     /** 두 번째 버튼 색상 지정 **/
     private val setButtonColor : String,
         ): DialogFragment() {
@@ -48,6 +49,7 @@ class ComponentDialogTwoButton (
         when(tag) {
             "STOP_WRITING_TODO" -> case_STOP_WRITING_TODO()
             "LOG_OUT" -> case_LOG_OUT()
+            "DELETE_SCHEDULE" -> case_DELETE_SCHEDULE()
         }
     }
 
@@ -61,7 +63,7 @@ class ComponentDialogTwoButton (
 
     private fun initSecondClick() {
         binding.componentDialog2ButtonTvSecondBtn.setOnClickListener {
-            onSecondBtnClicked.invoke()
+            onSecondBtnClicked.invoke(param)
             onDismiss()
         }
     }
@@ -77,6 +79,12 @@ class ComponentDialogTwoButton (
         binding.componentDialog2ButtonTvTitle.text = "로그아웃 할까요?"
         binding.componentDialog2ButtonTvFirstBtn.text = "취소"
         binding.componentDialog2ButtonTvSecondBtn.text = "확인"
+    }
+
+    private fun case_DELETE_SCHEDULE() {
+        binding.componentDialog2ButtonTvTitle.text = "이 일정을 삭제할까요?"
+        binding.componentDialog2ButtonTvFirstBtn.text = "취소"
+        binding.componentDialog2ButtonTvSecondBtn.text = "삭제"
     }
 
     fun onDismiss() {

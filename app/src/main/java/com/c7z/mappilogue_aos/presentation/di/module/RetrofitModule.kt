@@ -1,13 +1,17 @@
 package com.c7z.mappilogue_aos.presentation.di.module
 
+import android.content.SharedPreferences
 import com.c7z.mappilogue_aos.BuildConfig
 import com.c7z.mappilogue_aos.presentation.di.annotation.KakaoRetrofit
 import com.c7z.mappilogue_aos.presentation.di.annotation.MappilogueRetrofit
+import com.c7z.mappilogue_aos.presentation.util.AuthInterceptor
 import com.c7z.mappilogue_aos.presentation.util.XAccessTokenInterceptor
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Authenticator
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -24,9 +28,9 @@ class RetrofitModule {
         return OkHttpClient.Builder()
             .readTimeout(5000, TimeUnit.MILLISECONDS)
             .connectTimeout(5000, TimeUnit.MILLISECONDS)
+            .authenticator(AuthInterceptor())
             .addNetworkInterceptor(XAccessTokenInterceptor()) // JWT 자동 헤더 전송
             .build()
-
     }
 
     @Provides
